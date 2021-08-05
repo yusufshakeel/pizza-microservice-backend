@@ -1,0 +1,40 @@
+{
+  "$id": "productFetchAllResponseApi",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "products"
+      ],
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "productId",
+              "productName",
+              "productType"
+            ],
+            "properties": {
+              "productId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "productName": {
+                "type": "string"
+              },
+              "productType": {
+                "$ref": "../../domain/v1/product-type.json#"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

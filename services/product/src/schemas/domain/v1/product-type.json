@@ -1,0 +1,10 @@
+{
+  "$id": "productTypeDomain",
+  "type": "string",
+  "enum": [
+    "PIZZA",
+    "SIDE",
+    "BEVERAGE",
+    "DESSERT"
+  ]
+}

@@ -6,7 +6,8 @@
   "dependencies": {
     "arecibo": "^2.0.0",
     "fastify": "^3.20.1",
-    "fastify-swagger": "^4.8.4"
+    "fastify-swagger": "^4.8.4",
+    "json-schema-ref-parser": "^9.0.9"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
@@ -14,6 +15,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
   },
   "scripts": {
@@ -21,7 +23,8 @@
     "lint": "npx eslint -c .eslintrc.json services",
     "lint:fix": "npx eslint --fix -c .eslintrc.json services",
     "test": "jest -c jest.config.json",
-    "start-service:product": "node services/product/src/index.js"
+    "start-service:product": "node services/product/src/index.js",
+    "watch-service:product": "nodemon services/product/src/index.js"
   },
   "repository": {
     "type": "git",
