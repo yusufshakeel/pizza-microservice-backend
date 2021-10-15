@@ -1,0 +1,16 @@
+{
+  "$id": "contactPhone",
+  "type": "object",
+  "required": [
+    "countryCode",
+    "phoneNumber"
+  ],
+  "properties": {
+    "countryCode": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    }
+  }
+}

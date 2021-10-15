@@ -1,0 +1,29 @@
+{
+  "$id": "userPatchRequest",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "$ref": "../../domain/v1/email.json#"
+        },
+        "contactPhone": {
+          "$ref": "../../domain/v1/contact-phone.json#"
+        },
+        "address": {
+          "$ref": "../../domain/v1/address.json#"
+        }
+      }
+    }
+  }
+}

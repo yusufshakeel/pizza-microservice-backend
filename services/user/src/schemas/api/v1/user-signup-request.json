@@ -1,0 +1,38 @@
+{
+  "$id": "userSignUpRequest",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "firstName",
+        "email",
+        "password",
+        "contactPhone"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "$ref": "../../domain/v1/email.json#"
+        },
+        "password": {
+          "$ref": "../../domain/v1/password.json#"
+        },
+        "contactPhone": {
+          "$ref": "../../domain/v1/contact-phone.json#"
+        },
+        "address": {
+          "$ref": "../../domain/v1/address.json#"
+        }
+      }
+    }
+  }
+}
