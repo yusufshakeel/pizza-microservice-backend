@@ -16,7 +16,7 @@ module.exports = async function Routes(fastify, options) {
         200: schemaRepository.v1.users.fetchUserById.response
       }
     },
-    handler: async function(request, reply) {
+    handler: async function (request, reply) {
       const { userId } = request.params;
       const user = await controller.fetchUserById(userId);
       reply.code(HTTP_STATUS_CODES.OK).send(user);
@@ -34,7 +34,7 @@ module.exports = async function Routes(fastify, options) {
         200: schemaRepository.v1.users.signUp.response
       }
     },
-    handler: async function(request, reply) {
+    handler: async function (request, reply) {
       const user = await controller.signUp(request.body.data);
       reply.code(HTTP_STATUS_CODES.OK).send(user);
     }
@@ -51,7 +51,7 @@ module.exports = async function Routes(fastify, options) {
         200: schemaRepository.v1.users.logIn.response
       }
     },
-    handler: async function(request, reply) {
+    handler: async function (request, reply) {
       const user = await controller.logIn(request.body.data);
       reply.code(HTTP_STATUS_CODES.OK).send(user);
     }
@@ -69,8 +69,11 @@ module.exports = async function Routes(fastify, options) {
         200: schemaRepository.v1.users.patchPassword.response
       }
     },
-    handler: async function(request, reply) {
-      const user = await controller.updatePassword(request.params.userId, request.body.data.password);
+    handler: async function (request, reply) {
+      const user = await controller.updatePassword(
+        request.params.userId,
+        request.body.data.password
+      );
       reply.code(HTTP_STATUS_CODES.OK).send(user);
     }
   });
@@ -87,7 +90,7 @@ module.exports = async function Routes(fastify, options) {
         200: schemaRepository.v1.users.patch.response
       }
     },
-    handler: async function(request, reply) {
+    handler: async function (request, reply) {
       const user = await controller.update(request.params.userId, request.body.data);
       reply.code(HTTP_STATUS_CODES.OK).send(user);
     }

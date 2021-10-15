@@ -7,7 +7,7 @@ module.exports = function SchemaRepository(parser) {
   const self = this;
   this.schemas = {};
 
-  this.loadAll = async function() {
+  this.loadAll = async function () {
     const fetchUserByIdParams = await parser.dereference(
       path.join(SCHEMA_LOCATION_V1, 'user-fetch-params.json')
     );

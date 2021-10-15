@@ -1,8 +1,5 @@
 'use strict';
 
-const jwt = require('jsonwebtoken');
-const { JWT_LIFESPAN, JWT_SECRET } = require('../constants');
-
 module.exports = function UserRepository() {
   this.fetchUserById = async function fetchUserById(userId) {
     return {
@@ -35,15 +32,8 @@ module.exports = function UserRepository() {
   };
 
   this.logIn = async function logIn(emailAddress, hashedPassword) {
-    const now = Math.floor(Date.now() / 1000);
-    const token = jwt.sign({
-      iat: now,
-      exp: now + JWT_LIFESPAN,
-      userId: '4eebd595-bdbe-4971-b04e-a84192a21f98'
-    }, JWT_SECRET);
     return {
-      userId: '4eebd595-bdbe-4971-b04e-a84192a21f98',
-      token
+      userId: '4eebd595-bdbe-4971-b04e-a84192a21f98'
     };
   };
 
