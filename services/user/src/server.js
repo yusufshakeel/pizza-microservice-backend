@@ -8,7 +8,7 @@ const { HTTP_PORT, HTTP_HOST } = require('./constants');
 const RoutesV1 = require('./routes/v1');
 const Controllers = require('./controllers');
 const Repositories = require('./repositories');
-const ErrorHandler = require('./errors/error-handler');
+const ErrorHandler = require('./middlewares/error-handler');
 
 module.exports = function Server({ fastify }) {
   const self = this;
