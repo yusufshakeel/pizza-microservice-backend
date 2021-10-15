@@ -1,8 +1,6 @@
 fileignoreconfig:
 - filename: services/user/src/constants/index.js
   checksum: 31f34eec5c18b8181e7adb07e09a31d73ef26d32cbd27ec58878206532a22989
-- filename: services/user/src/controllers/index.js
-  checksum: ac91641b2dd2dc9776f9c745460e8754b6fae38446c7791458d9d414e6387b3b
 - filename: services/user/src/repositories/schema-repository.js
   checksum: 494eef3a68ef771097d24f077f36b6fbf803618bb9a57c03f922d3fd691c93f1
 - filename: services/user/src/repositories/user-repository.js
@@ -17,3 +15,5 @@ fileignoreconfig:
   checksum: 5291c061ddea07899fb4a5d4a45374bf9b22d624f1d583800b46fee5a58d0bae
 - filename: services/user/package-lock.json
   checksum: d6e60a6dffd03c37a53d625c0bfeb0da25979b59e6eec9650689aef179fa490d
+- filename: services/user/src/controllers/index.js
+  checksum: ee7029158f3a2bf2a791265c4bebf36bee53707865508bebc2a50db79853f1ab

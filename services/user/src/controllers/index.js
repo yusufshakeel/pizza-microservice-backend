@@ -9,7 +9,7 @@ const UserNotFoundError = require('../errors/user-not-found-error');
 module.exports = function Controller({ userRepository }) {
   this.fetchUserById = async function fetchUserById(userId) {
     const fetchedUser = await userRepository.fetchUserById(userId);
-    if (fetchedUser) {
+    if (!fetchedUser) {
       throw new UserNotFoundError(userId);
     }
     return { data: fetchedUser };
