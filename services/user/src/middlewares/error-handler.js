@@ -1,6 +1,6 @@
 'use strict';
 
-const ErrorBuilder = require('../errors/error-builder');
+const ErrorBuilder = require('../builders/error-builder');
 
 function ErrorHandler() {
   const errorBuilder = new ErrorBuilder();

@@ -26,8 +26,8 @@
   },
   "scripts": {
     "precommit": "npm run lint && npm run test",
-    "lint": "npx eslint -c .eslintrc.json src",
-    "lint:fix": "npx eslint --fix -c .eslintrc.json src",
+    "lint": "npx eslint -c .eslintrc.json src test",
+    "lint:fix": "npx eslint --fix -c .eslintrc.json src test",
     "test": "jest -c jest.config.json",
     "start": "nodemon src/index.js"
   },
