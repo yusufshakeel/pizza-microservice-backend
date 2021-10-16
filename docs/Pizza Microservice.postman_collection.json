@@ -61,6 +61,7 @@
 										"exec": [
 											"var responseBody = JSON.parse(responseBody);",
 											"pm.environment.set(\"userId\", responseBody.data.userId);",
+											"pm.environment.set(\"authToken\", responseBody.data.token);",
 											""
 										],
 										"type": "text/javascript"
