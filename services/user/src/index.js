@@ -20,7 +20,8 @@ async function dbCon() {
     await mongoose.connect(mongoUrl, mongoOption);
     console.info('Connected to MongoDB database.');
   } catch (err) {
-    throw new Error('FATAL ERROR: Failed to connect to the MongoDB database.');
+    console.error('FATAL ERROR: Failed to connect to the MongoDB database.');
+    console.error(err);
   }
 }
 

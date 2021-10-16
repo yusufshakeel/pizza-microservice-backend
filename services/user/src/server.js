@@ -9,6 +9,7 @@ const RoutesV1 = require('./routes/v1');
 const Controllers = require('./controllers');
 const Repositories = require('./repositories');
 const ErrorHandlerMiddleware = require('./middlewares/error-handler-middleware');
+const AuthTokenHook = require('./hooks/auth-token-hook');
 
 module.exports = function Server({ fastify }) {
   const self = this;
@@ -21,6 +22,7 @@ module.exports = function Server({ fastify }) {
 
     const controller = new Controllers({ userRepository });
 
+    fastify.addHook('preHandler', AuthTokenHook);
     fastify.setErrorHandler(new ErrorHandlerMiddleware());
     fastify.register(swaggerPlugin, swaggerConfig);
     fastify.register(areciboPlugin, areciboConfig);
