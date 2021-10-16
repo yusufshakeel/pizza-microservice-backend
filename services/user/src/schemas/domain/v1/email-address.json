@@ -1,0 +1,6 @@
+{
+  "$id": "emailAddress",
+  "type": "string",
+  "maxLength": 255,
+  "minLength": 8
+}

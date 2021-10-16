@@ -35,3 +35,9 @@ fileignoreconfig:
   checksum: 2b260b84b2d6a01e50baa940c3d1c6bba60c43811f44e3b980cba35b36390a56
 - filename: services/user/src/repositories/user-repository.js
   checksum: 39f9765067d24f3f32e0b2d2c46e2ae969273cb5f0cc7a18695063ed146857cc
+- filename: services/user/src/schemas/api/v1/user-patch-password-request.json
+  checksum: 30ca4744147e986cb62728acfb67137579ef43527f40e428a1d4cb4afa4150ff
+- filename: services/user/src/index.js
+  checksum: a2f0f01d482d1f2ed294600e8b383b1483837556e80342def6f37573fd12955a
+- filename: docs/Pizza
+  checksum: bc1161419b290b69bc611f3d17fb5082d74d5867d2f5d5df8ad389db282c2167

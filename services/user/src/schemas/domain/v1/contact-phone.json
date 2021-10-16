@@ -5,6 +5,7 @@
     "countryCode",
     "phoneNumber"
   ],
+  "additionalProperties": false,
   "properties": {
     "countryCode": {
       "type": "string"

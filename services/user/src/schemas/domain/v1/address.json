@@ -1,6 +1,7 @@
 {
   "$id": "address",
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "line1",
     "city",

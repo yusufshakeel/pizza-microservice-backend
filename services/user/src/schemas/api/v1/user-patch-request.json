@@ -4,18 +4,17 @@
   "required": [
     "data"
   ],
+  "additionalProperties": false,
   "properties": {
     "data": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "firstName": {
           "type": "string"
         },
         "lastName": {
           "type": "string"
-        },
-        "email": {
-          "$ref": "../../domain/v1/email.json#"
         },
         "contactPhone": {
           "$ref": "../../domain/v1/contact-phone.json#"

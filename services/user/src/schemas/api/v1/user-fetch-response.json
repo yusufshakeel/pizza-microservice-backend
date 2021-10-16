@@ -23,8 +23,8 @@
         "lastName": {
           "type": "string"
         },
-        "email": {
-          "$ref": "../../domain/v1/email.json#"
+        "emailAddress": {
+          "$ref": "../../domain/v1/email-address.json#"
         },
         "contactPhone": {
           "$ref": "../../domain/v1/contact-phone.json#"

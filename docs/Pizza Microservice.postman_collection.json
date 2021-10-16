@@ -13,12 +13,25 @@
 					"item": [
 						{
 							"name": "User sign up",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var responseBody = JSON.parse(responseBody);",
+											"pm.environment.set(\"userId\", responseBody.data.userId);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"data\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"email\": {\n            \"address\": \"janedoe@example.com\"\n        },\n        \"contactPhone\": {\n            \"countryCode\": \"91\",\n            \"phoneNumber\": \"9800098000\"\n        },\n        \"address\": {\n            \"line1\": \"Address line 1\",\n            \"line2\": \"Address line 2\",\n            \"line3\": \"Address line 3\",\n            \"city\": \"Bangalore\",\n            \"state\": \"KA\",\n            \"country\": \"IND\",\n            \"postcode\": \"560001\"\n        }\n    }\n}",
+									"raw": "{\n    \"data\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"emailAddress\": \"janedoe@example.com\",\n        \"password\": \"root1234\",\n        \"contactPhone\": {\n            \"countryCode\": \"91\",\n            \"phoneNumber\": \"9800098000\"\n        },\n        \"address\": {\n            \"line1\": \"Address line 1\",\n            \"line2\": \"Address line 2\",\n            \"line3\": \"Address line 3\",\n            \"city\": \"Bangalore\",\n            \"state\": \"KA\",\n            \"country\": \"IND\",\n            \"postcode\": \"560001\"\n        }\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -40,12 +53,40 @@
 							"response": []
 						},
 						{
-							"name": "User by Id",
+							"name": "User Log in",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var responseBody = JSON.parse(responseBody);",
+											"pm.environment.set(\"userId\", responseBody.data.userId);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"method": "GET",
-								"header": [],
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"emailAddress\": \"janedoe@example.com\",\n        \"password\": \"root1234\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "{{USER_DOMAIN_URL}}/user/v1/users/4eebd595-bdbe-4971-b04e-a84192a21f98",
+									"raw": "{{USER_DOMAIN_URL}}/user/v1/users/login",
 									"host": [
 										"{{USER_DOMAIN_URL}}"
 									],
@@ -53,7 +94,86 @@
 										"user",
 										"v1",
 										"users",
-										"4eebd595-bdbe-4971-b04e-a84192a21f98"
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{USER_DOMAIN_URL}}/user/v1/users/{{userId}}",
+									"host": [
+										"{{USER_DOMAIN_URL}}"
+									],
+									"path": [
+										"user",
+										"v1",
+										"users",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Password",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"password\": \"root1234\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{USER_DOMAIN_URL}}/user/v1/users/{{userId}}/password",
+									"host": [
+										"{{USER_DOMAIN_URL}}"
+									],
+									"path": [
+										"user",
+										"v1",
+										"users",
+										"{{userId}}",
+										"password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"contactPhone\": {\n            \"countryCode\": \"91\",\n            \"phoneNumber\": \"9800098000\"\n        },\n        \"address\": {\n            \"line1\": \"Address line 1\",\n            \"line2\": \"Address line 2\",\n            \"line3\": \"Address line 3\",\n            \"city\": \"Bangalore\",\n            \"state\": \"KA\",\n            \"country\": \"IND\",\n            \"postcode\": \"560001\"\n        }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{USER_DOMAIN_URL}}/user/v1/users/{{userId}}",
+									"host": [
+										"{{USER_DOMAIN_URL}}"
+									],
+									"path": [
+										"user",
+										"v1",
+										"users",
+										"{{userId}}"
 									]
 								}
 							},

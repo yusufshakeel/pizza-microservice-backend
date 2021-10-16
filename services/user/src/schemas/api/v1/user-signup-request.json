@@ -4,12 +4,14 @@
   "required": [
     "data"
   ],
+  "additionalProperties": false,
   "properties": {
     "data": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "firstName",
-        "email",
+        "emailAddress",
         "password",
         "contactPhone"
       ],
@@ -20,8 +22,8 @@
         "lastName": {
           "type": "string"
         },
-        "email": {
-          "$ref": "../../domain/v1/email.json#"
+        "emailAddress": {
+          "$ref": "../../domain/v1/email-address.json#"
         },
         "password": {
           "$ref": "../../domain/v1/password.json#"

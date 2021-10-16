@@ -18,7 +18,7 @@ module.exports = function UserRepository() {
 
   this.logIn = async function logIn(emailAddress) {
     return await UserModel.findOne({
-      email: { address: emailAddress },
+      emailAddress,
       accountStatus: 'ACTIVE'
     });
   };

@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 
-const userSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
@@ -22,16 +22,12 @@ const userSchema = new mongoose.Schema({
     maxlength: 255,
     minlength: 1
   },
-  email: {
-    type: Object,
+  emailAddress: {
+    type: String,
+    maxlength: 255,
+    minlength: 8,
     required: true,
-    address: {
-      type: String,
-      maxlength: 255,
-      minlength: 8,
-      required: true,
-      unique: true
-    }
+    unique: true
   },
   password: {
     type: String,
@@ -109,6 +105,6 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-const UserModel = mongoose.model('user', userSchema);
+const UserModel = mongoose.model('user', UserSchema);
 
 module.exports = { UserModel };

@@ -13,16 +13,17 @@ const {
   MONGODB_DB_NAME
 } = require('./constants');
 
-mongoose
-  .connect(`mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}`, {
-    dbName: MONGODB_DB_NAME
-  })
-  .then(() => {
+async function dbCon() {
+  const mongoOption = { dbName: MONGODB_DB_NAME };
+  const mongoUrl = `mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}`;
+  try {
+    await mongoose.connect(mongoUrl, mongoOption);
     console.info('Connected to MongoDB database.');
-  })
-  .catch(err => {
-    console.error(err);
+  } catch (err) {
     throw new Error('FATAL ERROR: Failed to connect to the MongoDB database.');
-  });
+  }
+}
+
+dbCon();
 
 new Server({ fastify }).setup().then(server => server.run());
