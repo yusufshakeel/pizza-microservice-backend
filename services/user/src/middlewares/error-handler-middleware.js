@@ -2,7 +2,7 @@
 
 const ErrorBuilder = require('../builders/error-builder');
 
-function ErrorHandler() {
+function ErrorHandlerMiddleware() {
   const errorBuilder = new ErrorBuilder();
 
   return (error, request, reply) => {
@@ -19,4 +19,4 @@ function ErrorHandler() {
   };
 }
 
-module.exports = ErrorHandler;
+module.exports = ErrorHandlerMiddleware;

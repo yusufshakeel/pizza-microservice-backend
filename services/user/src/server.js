@@ -8,7 +8,7 @@ const { HTTP_PORT, HTTP_HOST } = require('./constants');
 const RoutesV1 = require('./routes/v1');
 const Controllers = require('./controllers');
 const Repositories = require('./repositories');
-const ErrorHandler = require('./middlewares/error-handler');
+const ErrorHandlerMiddleware = require('./middlewares/error-handler-middleware');
 
 module.exports = function Server({ fastify }) {
   const self = this;
@@ -21,7 +21,7 @@ module.exports = function Server({ fastify }) {
 
     const controller = new Controllers({ userRepository });
 
-    fastify.setErrorHandler(new ErrorHandler());
+    fastify.setErrorHandler(new ErrorHandlerMiddleware());
     fastify.register(swaggerPlugin, swaggerConfig);
     fastify.register(areciboPlugin, areciboConfig);
 
