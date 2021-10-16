@@ -15,5 +15,11 @@ fileignoreconfig:
   checksum: 5291c061ddea07899fb4a5d4a45374bf9b22d624f1d583800b46fee5a58d0bae
 - filename: services/user/package-lock.json
   checksum: d6e60a6dffd03c37a53d625c0bfeb0da25979b59e6eec9650689aef179fa490d
+- filename: services/user/test/unit/src/services/auth-token-service.unit.test.js
+  checksum: f91788495eee66cc3366dd35d2ad74969f16d06bb5971b2e58a7f2fb856b020e
+- filename: services/user/src/services/auth-token-service.js
+  checksum: fa194efb670a98a45657c44bf944b6d42766b94ed9781d52ba903068ad5c071f
 - filename: services/user/src/controllers/index.js
-  checksum: ee7029158f3a2bf2a791265c4bebf36bee53707865508bebc2a50db79853f1ab
+  checksum: 3366718b024a5ee5bf1dd2021668839d264450f5ee2cb9e396a05f608b6fd8cb
+- filename: services/user/src/services/password-service.js
+  checksum: 922c10a06ec4eb25126c568511bd4a59dad8d48a751dd2e132591b22c6ca34ca
