@@ -41,3 +41,7 @@ fileignoreconfig:
   checksum: a2f0f01d482d1f2ed294600e8b383b1483837556e80342def6f37573fd12955a
 - filename: docs/Pizza
   checksum: bc1161419b290b69bc611f3d17fb5082d74d5867d2f5d5df8ad389db282c2167
+- filename: README.md
+  checksum: 7e983e16afcd087ab525ddb93faf55149d1592181c9cf3e0502efc6d903c3d5c
+- filename: services/user/src/constants/index.js
+  checksum: ca51d0b92f52c88e0cd599e395bdda8c44e066301ffffa87191178e3bd5f4d36
