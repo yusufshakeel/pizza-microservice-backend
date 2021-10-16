@@ -22,4 +22,6 @@ fileignoreconfig:
 - filename: services/user/src/controllers/index.js
   checksum: 3366718b024a5ee5bf1dd2021668839d264450f5ee2cb9e396a05f608b6fd8cb
 - filename: services/user/src/services/password-service.js
-  checksum: 922c10a06ec4eb25126c568511bd4a59dad8d48a751dd2e132591b22c6ca34ca
+  checksum: ba9f317080a85a30ceb243e8eaca5b37472de8c38c64e8c60fa57421254ef59e
+- filename: services/user/test/unit/src/services/password-service.unit.test.js
+  checksum: c41a4adb84845447260fec97abb891a79744a60577b0bc361915a07c6c813dbc
