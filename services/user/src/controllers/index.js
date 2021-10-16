@@ -1,8 +1,9 @@
 'use strict';
 
 const { createAuthToken } = require('../services/auth-token-service');
-const { hashPassword } = require('../services/password-service');
+const { hashPassword, verifyPassword } = require('../services/password-service');
 const UserNotFoundError = require('../errors/user-not-found-error');
+const LogInError = require('../errors/login-error');
 
 module.exports = function Controller({ userRepository }) {
   this.fetchUserById = async function fetchUserById(userId) {
@@ -20,11 +21,14 @@ module.exports = function Controller({ userRepository }) {
 
   this.logIn = async function logIn(user) {
     const { emailAddress, password } = user;
-    const hashedPassword = hashPassword(password);
-    const loggedInUser = await userRepository.logIn(emailAddress, hashedPassword);
+    const loggedInUser = await userRepository.logIn(emailAddress);
 
-    if (!loggedInUser.userId) {
-      throw new UserNotFoundError(loggedInUser.userId);
+    if (!loggedInUser) {
+      throw new UserNotFoundError();
+    }
+
+    if (!verifyPassword(password, loggedInUser.password)) {
+      throw new LogInError({ email: emailAddress, userId: loggedInUser.userId });
     }
 
     const token = createAuthToken(loggedInUser.userId);
@@ -35,17 +39,21 @@ module.exports = function Controller({ userRepository }) {
   this.updatePassword = async function updatePassword(userId, password) {
     const hashedPassword = hashPassword(password);
     const updatedUser = await userRepository.updatePassword(userId, hashedPassword);
+
     if (!updatedUser) {
       throw new UserNotFoundError(userId);
     }
-    return { data: updatedUser };
+
+    return { data: { userId: updatedUser.userId } };
   };
 
   this.update = async function update(userId, user) {
     const updatedUser = await userRepository.update(userId, user);
+
     if (!updatedUser) {
       throw new UserNotFoundError(userId);
     }
-    return { data: updatedUser };
+
+    return { data: { userId: updatedUser.userId } };
   };
 };
