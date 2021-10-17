@@ -55,3 +55,7 @@ fileignoreconfig:
   checksum: 68eee601f44366063095e4781cd54cf1b92acbdbc254e792ea129acd1c3bf536
 - filename: services/user/test/unit/src/controllers/index.unit.test.js
   checksum: 94e3627c0e491cc32454c001905bc725814174de9ad07ebe8b986c1bd841653c
+- filename: docs/Pizza
+  checksum: bc1161419b290b69bc611f3d17fb5082d74d5867d2f5d5df8ad389db282c2167
+- filename: services/user/test/unit/src/routes/v1/index.unit.test.js
+  checksum: 0f6549ed556f14160d9a50cf491014bc165c56910b35a61606446ef98a28c92a

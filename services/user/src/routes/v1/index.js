@@ -7,17 +7,16 @@ module.exports = async function Routes(fastify, options) {
 
   fastify.route({
     method: 'GET',
-    url: '/user/v1/users/:userId',
+    url: '/user/v1/users/account',
     schema: {
       tags: ['APIs'],
-      description: 'Fetch user detail.',
-      params: schemaRepository.v1.users.fetchUserById.params,
+      description: 'Fetch user account detail.',
       response: {
         200: schemaRepository.v1.users.fetchUserById.response
       }
     },
     handler: async function (request, reply) {
-      const { userId } = request.params;
+      const userId = request['x-user-id'];
       const user = await controller.fetchUserById(userId);
       reply.code(HTTP_STATUS_CODES.OK).send(user);
     }
@@ -36,7 +35,7 @@ module.exports = async function Routes(fastify, options) {
     },
     handler: async function (request, reply) {
       const user = await controller.signUp(request.body.data);
-      reply.code(HTTP_STATUS_CODES.OK).send(user);
+      reply.code(HTTP_STATUS_CODES.CREATED).send(user);
     }
   });
 

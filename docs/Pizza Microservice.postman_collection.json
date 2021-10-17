@@ -79,7 +79,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"data\": {\n        \"emailAddress\": \"janedoe@example.com\",\n        \"password\": \"root1234\"\n    }\n}",
+									"raw": "{\n    \"data\": {\n        \"emailAddress\": \"johndoe@example.com\",\n        \"password\": \"root1234\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -113,7 +113,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{USER_DOMAIN_URL}}/user/v1/users/{{userId}}",
+									"raw": "{{USER_DOMAIN_URL}}/user/v1/users/account",
 									"host": [
 										"{{USER_DOMAIN_URL}}"
 									],
@@ -121,7 +121,7 @@
 										"user",
 										"v1",
 										"users",
-										"{{userId}}"
+										"account"
 									]
 								}
 							},
