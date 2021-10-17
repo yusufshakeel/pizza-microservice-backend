@@ -23,3 +23,10 @@ spec:
                 name: product-clusterip-service
                 port:
                   number: 10102
+          - path: /cart
+            pathType: Prefix
+            backend:
+              service:
+                name: cart-clusterip-service
+                port:
+                  number: 10103
