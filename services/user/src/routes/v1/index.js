@@ -11,6 +11,7 @@ module.exports = async function Routes(fastify, options) {
     schema: {
       tags: ['APIs'],
       description: 'Fetch user account detail.',
+      headers: schemaRepository.v1.users.request.headers,
       response: {
         200: schemaRepository.v1.users.fetchUserById.response
       }
@@ -62,6 +63,7 @@ module.exports = async function Routes(fastify, options) {
     schema: {
       tags: ['APIs'],
       description: 'Update user password.',
+      headers: schemaRepository.v1.users.request.headers,
       body: schemaRepository.v1.users.patchPassword.request,
       response: {
         200: schemaRepository.v1.users.patchPassword.response
@@ -82,6 +84,7 @@ module.exports = async function Routes(fastify, options) {
     schema: {
       tags: ['APIs'],
       description: 'Update user detail.',
+      headers: schemaRepository.v1.users.request.headers,
       body: schemaRepository.v1.users.patch.request,
       response: {
         200: schemaRepository.v1.users.patch.response

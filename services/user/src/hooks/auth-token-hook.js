@@ -7,6 +7,21 @@ const authTokenService = new AuthTokenService();
 
 const pathShouldIgnoreAuthToken = [
   {
+    urlPath: '/documentation',
+    method: 'GET',
+    description: 'Swagger Doc'
+  },
+  {
+    urlPath: '/liveness',
+    method: 'GET',
+    description: 'Arecibo Liveness'
+  },
+  {
+    urlPath: '/readiness',
+    method: 'GET',
+    description: 'Arecibo Readiness'
+  },
+  {
     urlPath: '/user/v1/users/login',
     method: 'POST',
     description: 'User log in'

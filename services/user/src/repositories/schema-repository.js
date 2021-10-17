@@ -56,8 +56,15 @@ module.exports = function SchemaRepository(parser) {
       path.join(SCHEMA_LOCATION_V1, 'user-patch-response.json')
     );
 
+    const userRequestHeader = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'user-request-headers.json')
+    );
+
     const v1Schemas = {
       users: {
+        request: {
+          headers: userRequestHeader
+        },
         fetchUserById: {
           params: fetchUserByIdParams,
           response: fetchUserByIdResponse

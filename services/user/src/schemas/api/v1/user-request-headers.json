@@ -1,0 +1,12 @@
+{
+  "$id": "userRequestHeaders",
+  "type": "object",
+  "required": [
+    "Authorization"
+  ],
+  "properties": {
+    "Authorization": {
+      "type": "string"
+    }
+  }
+}
