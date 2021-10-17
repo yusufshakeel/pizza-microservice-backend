@@ -4,7 +4,7 @@ const { UserModel } = require('../models/user-model');
 
 module.exports = function UserRepository() {
   this.fetchUserById = async function fetchUserById(userId) {
-    return await UserModel.findOne({ userId, accountStatue: 'ACTIVE' }, { password: 0 });
+    return UserModel.findOne({ userId, accountStatue: 'ACTIVE' }, { password: 0 });
   };
 
   this.signUp = async function signUp(user) {
@@ -13,7 +13,7 @@ module.exports = function UserRepository() {
   };
 
   this.logIn = async function logIn(emailAddress) {
-    return await UserModel.findOne({
+    return UserModel.findOne({
       emailAddress,
       accountStatus: 'ACTIVE'
     });

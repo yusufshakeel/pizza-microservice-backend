@@ -53,3 +53,5 @@ fileignoreconfig:
   checksum: 606e974374cc623c7b5af87426ca6e84d45b07b6a4779401a1ee091f63760e6f
 - filename: services/user/src/controllers/index.js
   checksum: 68eee601f44366063095e4781cd54cf1b92acbdbc254e792ea129acd1c3bf536
+- filename: services/user/test/unit/src/controllers/index.unit.test.js
+  checksum: 94e3627c0e491cc32454c001905bc725814174de9ad07ebe8b986c1bd841653c

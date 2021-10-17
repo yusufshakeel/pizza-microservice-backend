@@ -1,7 +1,10 @@
 'use strict';
 
+const PasswordService = require('../../../../src/services/password-service');
 const Controller = require('../../../../src/controllers');
 const UserNotFoundError = require('../../../../src/errors/user-not-found-error');
+
+const passwordService = new PasswordService();
 
 describe('Testing controller', () => {
   describe('fetchUserById', () => {
@@ -37,11 +40,150 @@ describe('Testing controller', () => {
     });
   });
 
-  describe('signUp', () => {});
+  describe('signUp', () => {
+    test('Should create user', async () => {
+      const userRepository = {
+        signUp: jest.fn(() => {
+          return {
+            userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
+          };
+        })
+      };
+      const controller = new Controller({ userRepository });
+      const result = await controller.signUp({
+        firstName: 'Jane',
+        lastName: 'Doe',
+        emailAddress: 'janedoe@example.com',
+        password: 'root1234'
+      });
+      expect(result).toStrictEqual({
+        data: {
+          userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
+        }
+      });
+    });
+  });
 
-  describe('logIn', () => {});
+  describe('logIn', () => {
+    describe('When user is not present', () => {
+      test('Should throw error', async () => {
+        const userRepository = {
+          logIn: jest.fn()
+        };
+        const controller = new Controller({ userRepository });
+        await expect(
+          controller.logIn({
+            emailAddress: 'janedoe@example.com',
+            password: 'root1234'
+          })
+        ).rejects.toThrow('User not found');
+      });
+    });
 
-  describe('updatePassword', () => {});
+    describe('When login password is incorrect', () => {
+      test('Should throw error', async () => {
+        const userRepository = {
+          logIn: jest.fn(() => ({
+            password: passwordService.hashPassword('root')
+          }))
+        };
+        const controller = new Controller({ userRepository });
+        await expect(
+          controller.logIn({
+            emailAddress: 'janedoe@example.com',
+            password: 'root1234'
+          })
+        ).rejects.toThrow('Log in details are incorrect');
+      });
+    });
 
-  describe('update', () => {});
+    describe('When login details are correct', () => {
+      test('Should not throw error', async () => {
+        const userRepository = {
+          logIn: jest.fn(() => ({
+            userId: '87b96c89-5365-4cf0-a104-b28da006c2d7',
+            password: passwordService.hashPassword('root1234')
+          }))
+        };
+        const controller = new Controller({ userRepository });
+        const result = await controller.logIn({
+          emailAddress: 'janedoe@example.com',
+          password: 'root1234'
+        });
+        expect(result).toStrictEqual({
+          data: {
+            userId: '87b96c89-5365-4cf0-a104-b28da006c2d7',
+            token: expect.any(String)
+          }
+        });
+      });
+    });
+  });
+
+  describe('updatePassword', () => {
+    describe('When user is not present', () => {
+      test('Should throw error', async () => {
+        const userRepository = {
+          updatePassword: jest.fn()
+        };
+        const controller = new Controller({ userRepository });
+        await expect(
+          controller.updatePassword('87b96c89-5365-4cf0-a104-b28da006c2d7', 'root1234')
+        ).rejects.toThrow('User not found');
+      });
+    });
+
+    describe('When details are correct', () => {
+      test('Should not throw error', async () => {
+        const userRepository = {
+          updatePassword: jest.fn(() => ({
+            userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
+          }))
+        };
+        const controller = new Controller({ userRepository });
+        const result = await controller.updatePassword(
+          '87b96c89-5365-4cf0-a104-b28da006c2d7',
+          'root1234'
+        );
+        expect(result).toStrictEqual({
+          data: {
+            userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
+          }
+        });
+      });
+    });
+  });
+
+  describe('update', () => {
+    describe('When user is not present', () => {
+      test('Should throw error', async () => {
+        const userRepository = {
+          update: jest.fn()
+        };
+        const controller = new Controller({ userRepository });
+        await expect(
+          controller.update('87b96c89-5365-4cf0-a104-b28da006c2d7', { firstName: 'Jane' })
+        ).rejects.toThrow('User not found');
+      });
+    });
+
+    describe('When details are correct', () => {
+      test('Should not throw error', async () => {
+        const userRepository = {
+          update: jest.fn(() => ({
+            userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
+          }))
+        };
+        const controller = new Controller({ userRepository });
+        const result = await controller.update('87b96c89-5365-4cf0-a104-b28da006c2d7', {
+          firstName: 'Jane'
+        });
+        expect(result).toStrictEqual({
+          data: {
+            userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
+          }
+        });
+      });
+    });
+  });
 });
