@@ -45,3 +45,11 @@ fileignoreconfig:
   checksum: 7e983e16afcd087ab525ddb93faf55149d1592181c9cf3e0502efc6d903c3d5c
 - filename: services/user/src/constants/index.js
   checksum: ca51d0b92f52c88e0cd599e395bdda8c44e066301ffffa87191178e3bd5f4d36
+- filename: services/user/src/services/password-service.js
+  checksum: 014e198f4271a1f4372a1dd8803e0228fda9d783e234181dc5e1748f599bfb2f
+- filename: services/user/test/unit/src/services/password-service.unit.test.js
+  checksum: 50ca51f4ba081c167f8785410da6942919c47447acc875aea8b974bf1692052a
+- filename: services/user/test/unit/src/hooks/auth-token-hook.unit.test.js
+  checksum: 606e974374cc623c7b5af87426ca6e84d45b07b6a4779401a1ee091f63760e6f
+- filename: services/user/src/controllers/index.js
+  checksum: 68eee601f44366063095e4781cd54cf1b92acbdbc254e792ea129acd1c3bf536
