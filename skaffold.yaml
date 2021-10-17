@@ -4,14 +4,6 @@ deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
-build:
-  local:
-    push: false
-  artifacts:
-    - image: yusufshakeel/pizza-microservice-backend-cart-service
-      context: cart
-      docker:
-        dockerfile: ./services/cart/Dockerfile
 #build:
 #  local:
 #    push: false
