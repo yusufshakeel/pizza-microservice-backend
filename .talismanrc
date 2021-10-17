@@ -81,3 +81,5 @@ fileignoreconfig:
   checksum: 34e7bb1ecdafeed2de2a47f55013635235176c4672a8e85b44bf3b060916ab5d
 - filename: infra/k8s/product.yaml
   checksum: e33f8e4522b7334f71c5b34200394540b775f182f2f150cc4dcbccaea6204519
+- filename: README.md
+  checksum: f3bfc3ba4670d4473706e5b0cab1c1db858159580dcdb337b9e4ff7a56672dc5
