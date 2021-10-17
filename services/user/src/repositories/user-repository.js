@@ -1,8 +1,6 @@
 'use strict';
 
-const { UserModel } = require('../models/user-model');
-
-module.exports = function UserRepository() {
+module.exports = function UserRepository({ UserModel }) {
   this.fetchUserById = async function fetchUserById(userId) {
     return UserModel.findOne({ userId, accountStatue: 'ACTIVE' }, { password: 0 });
   };

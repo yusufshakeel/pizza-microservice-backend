@@ -59,3 +59,5 @@ fileignoreconfig:
   checksum: bc1161419b290b69bc611f3d17fb5082d74d5867d2f5d5df8ad389db282c2167
 - filename: services/user/test/unit/src/routes/v1/index.unit.test.js
   checksum: 0f6549ed556f14160d9a50cf491014bc165c56910b35a61606446ef98a28c92a
+- filename: services/user/test/unit/src/repositories/user-repository.unit.test.js
+  checksum: 5c0ae7afda3e693d79ef9c450b4017b90b67a4ea061e99fbe15e4d13f44706b0
