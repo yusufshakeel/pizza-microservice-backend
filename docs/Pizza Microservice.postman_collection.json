@@ -209,9 +209,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{USER_DOMAIN_URL}}/product/v1/products",
+									"raw": "{{PRODUCT_DOMAIN_URL}}/product/v1/products",
 									"host": [
-										"{{USER_DOMAIN_URL}}"
+										"{{PRODUCT_DOMAIN_URL}}"
 									],
 									"path": [
 										"product",
@@ -228,15 +228,132 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{USER_DOMAIN_URL}}/product/v1/products/p-1",
+									"raw": "{{PRODUCT_DOMAIN_URL}}/product/v1/products/p-1",
 									"host": [
-										"{{USER_DOMAIN_URL}}"
+										"{{PRODUCT_DOMAIN_URL}}"
 									],
 									"path": [
 										"product",
 										"v1",
 										"products",
 										"p-1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cart",
+					"item": [
+						{
+							"name": "Active cart",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var responseBody = JSON.parse(responseBody);",
+											"pm.environment.set(\"cartId\", responseBody.data.cartId);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{CART_DOMAIN_URL}}/cart/v1/carts/active",
+									"host": [
+										"{{CART_DOMAIN_URL}}"
+									],
+									"path": [
+										"cart",
+										"v1",
+										"carts",
+										"active"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cart by Id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{CART_DOMAIN_URL}}/cart/v1/carts/{{cartId}}",
+									"host": [
+										"{{CART_DOMAIN_URL}}"
+									],
+									"path": [
+										"cart",
+										"v1",
+										"carts",
+										"{{cartId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Cart",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var responseBody = JSON.parse(responseBody);",
+											"pm.environment.set(\"cartId\", responseBody.data.cartId);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"cartItems\": [\n            {\n                \"productId\": \"p-1\",\n                \"productName\": \"Paneer Pizza\",\n                \"productCustomInfo\": [\n                    {\n                        \"group\": \"SIZE\",\n                        \"items\": [\n                            {\n                                \"id\": \"SMALL - serve 1\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 0,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    },\n                    {\n                        \"group\": \"CRUST\",\n                        \"items\": [\n                            {\n                                \"id\": \"Hand tossed\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 1000,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    },\n                    {\n                        \"group\": \"TOPPING\",\n                        \"items\": [\n                            {\n                                \"id\": \"Onion\",\n                                \"category\": \"VEG\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 1000,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    }\n                ],\n                \"productGroup\": \"VEG\",\n                \"productCategory\": \"PIZZA\",\n                \"unitPrice\": {\n                    \"centAmount\": 20000,\n                    \"currency\": \"INR\",\n                    \"fraction\": 100\n                },\n                \"quantity\": {\n                    \"quantityNumber\": 1,\n                    \"quantityUnit\": \"unit\"\n                }\n            },\n            {\n                \"productId\": \"p-2\",\n                \"productName\": \"Veg Delight Pizza\",\n                \"productCustomInfo\": [\n                    {\n                        \"group\": \"SIZE\",\n                        \"items\": [\n                            {\n                                \"id\": \"SMALL - serve 1\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 0,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    },\n                    {\n                        \"group\": \"CRUST\",\n                        \"items\": [\n                            {\n                                \"id\": \"Hand tossed\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 1000,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    }\n                ],\n                \"productGroup\": \"VEG\",\n                \"productCategory\": \"PIZZA\",\n                \"unitPrice\": {\n                    \"centAmount\": 20000,\n                    \"currency\": \"INR\",\n                    \"fraction\": 100\n                },\n                \"quantity\": {\n                    \"quantityNumber\": 1,\n                    \"quantityUnit\": \"unit\"\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{CART_DOMAIN_URL}}/cart/v1/carts",
+									"host": [
+										"{{CART_DOMAIN_URL}}"
+									],
+									"path": [
+										"cart",
+										"v1",
+										"carts"
 									]
 								}
 							},
