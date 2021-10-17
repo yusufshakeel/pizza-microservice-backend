@@ -16,3 +16,10 @@ spec:
                 name: user-clusterip-service
                 port:
                   number: 10101
+          - path: /product
+            pathType: Prefix
+            backend:
+              service:
+                name: product-clusterip-service
+                port:
+                  number: 10102

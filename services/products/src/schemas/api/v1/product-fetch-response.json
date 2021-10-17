@@ -1,0 +1,61 @@
+{
+  "$id": "productFetchResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "products"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "productId"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "productId": {
+                "type": "string"
+              },
+              "productName": {
+                "type": "string"
+              },
+              "productDescription": {
+                "type": "string"
+              },
+              "productGroup": {
+                "type": "string"
+              },
+              "productCategory": {
+                "type": "string"
+              },
+              "price": {
+                "$ref": "../../domain/v1/money.json#"
+              },
+              "productStatus": {
+                "type": "string"
+              },
+              "apiVersion": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

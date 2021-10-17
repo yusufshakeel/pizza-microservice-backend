@@ -199,6 +199,50 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "All products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{USER_DOMAIN_URL}}/product/v1/products",
+									"host": [
+										"{{USER_DOMAIN_URL}}"
+									],
+									"path": [
+										"product",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Product by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{USER_DOMAIN_URL}}/product/v1/products/p-1",
+									"host": [
+										"{{USER_DOMAIN_URL}}"
+									],
+									"path": [
+										"product",
+										"v1",
+										"products",
+										"p-1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

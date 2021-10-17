@@ -61,3 +61,11 @@ fileignoreconfig:
   checksum: 0f6549ed556f14160d9a50cf491014bc165c56910b35a61606446ef98a28c92a
 - filename: services/user/test/unit/src/repositories/user-repository.unit.test.js
   checksum: 5c0ae7afda3e693d79ef9c450b4017b90b67a4ea061e99fbe15e4d13f44706b0
+- filename: docs/Pizza
+  checksum: bc1161419b290b69bc611f3d17fb5082d74d5867d2f5d5df8ad389db282c2167
+- filename: services/products/package-lock.json
+  checksum: 825e8a7883b634cb9851e4e74a1b8db1e3433a231bb3a58dd1c097ddbeb977bf
+- filename: README.md
+  checksum: 87c961c9edf7f62180de2d1874bd42a5051053092b060974aa3ea1f7c41e5c6a
+- filename: services/products/src/constants/index.js
+  checksum: f3f072128a20e1a52cc72aaa785b0cdbc40dbb77ab3c7ed61236ba8f6f2e045e
