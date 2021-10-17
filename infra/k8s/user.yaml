@@ -22,9 +22,15 @@ spec:
             - name: USER_MONGODB_PORT
               value: "27017"
             - name: USER_MONGODB_USERNAME
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: user-mongodb-username
+                  key: USER_MONGODB_USERNAME
             - name: USER_MONGODB_PASSWORD
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: user-mongodb-password
+                  key: USER_MONGODB_PASSWORD
 ---
 apiVersion: v1
 kind: Service

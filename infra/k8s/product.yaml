@@ -22,9 +22,15 @@ spec:
             - name: PRODUCT_MONGODB_PORT
               value: "27017"
             - name: PRODUCT_MONGODB_USERNAME
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: product-mongodb-username
+                  key: PRODUCT_MONGODB_USERNAME
             - name: PRODUCT_MONGODB_PASSWORD
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: product-mongodb-password
+                  key: PRODUCT_MONGODB_PASSWORD
 ---
 apiVersion: v1
 kind: Service

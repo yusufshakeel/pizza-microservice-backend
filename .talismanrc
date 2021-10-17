@@ -75,3 +75,9 @@ fileignoreconfig:
   checksum: 1aa61b991ad997928256b56d24174ffbd447d06bb235a888f59a71511319725a
 - filename: services/cart/src/services/auth-token-service.js
   checksum: bff96e13cb0481dfc93123df62667c79894d6f44d14b1e0ee1bfc4506aa20ea8
+- filename: infra/k8s/cart.yaml
+  checksum: 3c7318fa42d571bd0666f6a75f87d266cb442b41b4b14d22df5576fcd66b916a
+- filename: infra/k8s/user.yaml
+  checksum: 34e7bb1ecdafeed2de2a47f55013635235176c4672a8e85b44bf3b060916ab5d
+- filename: infra/k8s/product.yaml
+  checksum: e33f8e4522b7334f71c5b34200394540b775f182f2f150cc4dcbccaea6204519

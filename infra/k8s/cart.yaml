@@ -22,9 +22,15 @@ spec:
             - name: CART_MONGODB_PORT
               value: "27017"
             - name: CART_MONGODB_USERNAME
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: cart-mongodb-username
+                  key: CART_MONGODB_USERNAME
             - name: CART_MONGODB_PASSWORD
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: cart-mongodb-password
+                  key: CART_MONGODB_PASSWORD
 ---
 apiVersion: v1
 kind: Service
