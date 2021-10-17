@@ -1,0 +1,12 @@
+{
+  "$id": "cartRequestHeaders",
+  "type": "object",
+  "required": [
+    "Authorization"
+  ],
+  "properties": {
+    "Authorization": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$id": "cartCreateRequest",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "cartItems"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "cartItems": {
+          "$ref": "./cart-items.json#"
+        }
+      }
+    }
+  }
+}

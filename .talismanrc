@@ -69,3 +69,9 @@ fileignoreconfig:
   checksum: 87c961c9edf7f62180de2d1874bd42a5051053092b060974aa3ea1f7c41e5c6a
 - filename: services/products/src/constants/index.js
   checksum: f3f072128a20e1a52cc72aaa785b0cdbc40dbb77ab3c7ed61236ba8f6f2e045e
+- filename: services/cart/package-lock.json
+  checksum: 0b3e07fe48dc56bcea92135fdbc03bb7808b50f8c1091a9be799eabaaaadf0b1
+- filename: services/cart/src/constants/index.js
+  checksum: 1aa61b991ad997928256b56d24174ffbd447d06bb235a888f59a71511319725a
+- filename: services/cart/src/services/auth-token-service.js
+  checksum: bff96e13cb0481dfc93123df62667c79894d6f44d14b1e0ee1bfc4506aa20ea8
