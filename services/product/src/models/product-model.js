@@ -20,6 +20,9 @@ const ProductSchema = new mongoose.Schema({
     required: true,
     maxlength: 500
   },
+  productCustomInfo: {
+    type: Object
+  },
   productGroup: {
     type: String,
     required: true,

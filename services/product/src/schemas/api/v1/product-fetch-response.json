@@ -31,6 +31,12 @@
               "productDescription": {
                 "type": "string"
               },
+              "productCustomInfo": {
+                "type": "array",
+                "item": {
+                  "type": "object"
+                }
+              },
               "productGroup": {
                 "type": "string"
               },

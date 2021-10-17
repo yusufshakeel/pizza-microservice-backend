@@ -1,6 +1,234 @@
 'use strict';
 
 function ProductsSeed() {
+  const pizzaProductCustomInfo =  [
+    {
+      group: 'SIZE',
+      items: [
+        {
+          id: 'SMALL - serve 1',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 0,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'MEDIUM - serve 2',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 10000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'LARGE - serve 4',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 20000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        }
+      ]
+    },
+    {
+      group: 'CRUST',
+      items: [
+        {
+          id: 'Hand tossed',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 1000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Thin crust',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 2000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Cheese burst',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 5000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        }
+      ]
+    },
+    {
+      group: 'TOPPING',
+      items: [
+        {
+          id: 'Onion',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 1000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Tomato',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 1000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Black Olive',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 2000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Corn',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 1000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Capsicum',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 1000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Paneer',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 5000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Red Chilli',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 1000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Jalapeno',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 1000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Mushroom',
+          category: 'VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 3000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Grilled Chicken',
+          category: 'NON VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 8000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Chicken Tikka',
+          category: 'NON VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 8000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        },
+        {
+          id: 'Barbecue Chicken',
+          category: 'NON VEG',
+          adjustment: {
+            multiplier: 1,
+            amount: {
+              centAmount: 8000,
+              fraction: 100,
+              currency: 'INR'
+            }
+          }
+        }
+      ]
+    }
+  ];
+
   return [
     {
       productId: 'p-1',
@@ -13,7 +241,8 @@ function ProductsSeed() {
         fraction: 100,
         currency: 'INR'
       },
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      productCustomInfo: pizzaProductCustomInfo
     },
     {
       productId: 'p-2',
@@ -26,7 +255,8 @@ function ProductsSeed() {
         fraction: 100,
         currency: 'INR'
       },
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      productCustomInfo: pizzaProductCustomInfo
     },
     {
       productId: 'p-3',
@@ -39,7 +269,8 @@ function ProductsSeed() {
         fraction: 100,
         currency: 'INR'
       },
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      productCustomInfo: pizzaProductCustomInfo
     },
     {
       productId: 'p-4',
@@ -52,7 +283,8 @@ function ProductsSeed() {
         fraction: 100,
         currency: 'INR'
       },
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      productCustomInfo: pizzaProductCustomInfo
     },
     {
       productId: 'p-5',
