@@ -152,7 +152,7 @@ describe('Routes /v1/users', () => {
       const token = authTokenService.createAuthToken('87b96c89-5365-4cf0-a104-b28da006c2d7');
       const response = await fastify.inject({
         method: 'PATCH',
-        url: '/user/v1/users/87b96c89-5365-4cf0-a104-b28da006c2d7/password',
+        url: '/user/v1/users/account/password',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
@@ -172,7 +172,7 @@ describe('Routes /v1/users', () => {
       const token = authTokenService.createAuthToken('87b96c89-5365-4cf0-a104-b28da006c2d7');
       const response = await fastify.inject({
         method: 'PATCH',
-        url: '/user/v1/users/87b96c89-5365-4cf0-a104-b28da006c2d7',
+        url: '/user/v1/users/account',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`

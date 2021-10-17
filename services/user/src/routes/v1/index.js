@@ -58,11 +58,10 @@ module.exports = async function Routes(fastify, options) {
 
   fastify.route({
     method: 'PATCH',
-    url: '/user/v1/users/:userId/password',
+    url: '/user/v1/users/account/password',
     schema: {
       tags: ['APIs'],
       description: 'Update user password.',
-      params: schemaRepository.v1.users.patchPassword.params,
       body: schemaRepository.v1.users.patchPassword.request,
       response: {
         200: schemaRepository.v1.users.patchPassword.response
@@ -70,7 +69,7 @@ module.exports = async function Routes(fastify, options) {
     },
     handler: async function (request, reply) {
       const user = await controller.updatePassword(
-        request.params.userId,
+        request['x-user-id'],
         request.body.data.password
       );
       reply.code(HTTP_STATUS_CODES.OK).send(user);
@@ -79,18 +78,17 @@ module.exports = async function Routes(fastify, options) {
 
   fastify.route({
     method: 'PATCH',
-    url: '/user/v1/users/:userId',
+    url: '/user/v1/users/account',
     schema: {
       tags: ['APIs'],
       description: 'Update user detail.',
-      params: schemaRepository.v1.users.patch.params,
       body: schemaRepository.v1.users.patch.request,
       response: {
         200: schemaRepository.v1.users.patch.response
       }
     },
     handler: async function (request, reply) {
-      const user = await controller.update(request.params.userId, request.body.data);
+      const user = await controller.update(request['x-user-id'], request.body.data);
       reply.code(HTTP_STATUS_CODES.OK).send(user);
     }
   });
