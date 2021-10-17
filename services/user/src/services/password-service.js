@@ -3,12 +3,14 @@
 const bcrypt = require('bcrypt');
 const { PASSWORD_SALT_ROUND } = require('../constants');
 
-function hashPassword(plainTextPassword) {
-  return bcrypt.hashSync(plainTextPassword, PASSWORD_SALT_ROUND);
+function PasswordService() {
+  this.hashPassword = function hashPassword(plainTextPassword) {
+    return bcrypt.hashSync(plainTextPassword, PASSWORD_SALT_ROUND);
+  };
+
+  this.verifyPassword = function verifyPassword(plainTestPassword, hashedPassword) {
+    return bcrypt.compareSync(plainTestPassword, hashedPassword);
+  };
 }
 
-function verifyPassword(plainTestPassword, hashedPassword) {
-  return bcrypt.compareSync(plainTestPassword, hashedPassword);
-}
-
-module.exports = { hashPassword, verifyPassword };
+module.exports = PasswordService;

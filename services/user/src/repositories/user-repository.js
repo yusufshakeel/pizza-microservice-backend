@@ -1,7 +1,6 @@
 'use strict';
 
 const { UserModel } = require('../models/user-model');
-const { hashPassword } = require('../services/password-service');
 
 module.exports = function UserRepository() {
   this.fetchUserById = async function fetchUserById(userId) {
@@ -9,10 +8,7 @@ module.exports = function UserRepository() {
   };
 
   this.signUp = async function signUp(user) {
-    const userModel = UserModel({
-      ...user,
-      password: hashPassword(user.password)
-    });
+    const userModel = UserModel(user);
     return await userModel.save();
   };
 

@@ -14,7 +14,6 @@ const {
 } = require('./constants');
 
 async function start() {
-  console.info('process env', process.env);
   const mongoOption = { dbName: MONGODB_DB_NAME };
   const userAuth =
     MONGODB_USERNAME.length && MONGODB_PASSWORD.length

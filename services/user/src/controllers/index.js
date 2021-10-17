@@ -1,11 +1,14 @@
 'use strict';
 
-const { createAuthToken } = require('../services/auth-token-service');
-const { hashPassword, verifyPassword } = require('../services/password-service');
+const AuthTokenService = require('../services/auth-token-service');
+const PasswordService = require('../services/password-service');
 const UserNotFoundError = require('../errors/user-not-found-error');
 const LogInError = require('../errors/login-error');
 
 module.exports = function Controller({ userRepository }) {
+  const authTokenService = new AuthTokenService();
+  const passwordService = new PasswordService();
+
   this.fetchUserById = async function fetchUserById(userId) {
     const fetchedUser = await userRepository.fetchUserById(userId);
     if (!fetchedUser) {
@@ -15,7 +18,10 @@ module.exports = function Controller({ userRepository }) {
   };
 
   this.signUp = async function signUp(user) {
-    const createdUser = await userRepository.signUp(user);
+    const createdUser = await userRepository.signUp({
+      ...user,
+      password: passwordService.hashPassword(user.password)
+    });
     return { data: createdUser };
   };
 
@@ -27,17 +33,17 @@ module.exports = function Controller({ userRepository }) {
       throw new UserNotFoundError();
     }
 
-    if (!verifyPassword(password, loggedInUser.password)) {
+    if (!passwordService.verifyPassword(password, loggedInUser.password)) {
       throw new LogInError({ email: emailAddress, userId: loggedInUser.userId });
     }
 
-    const token = createAuthToken(loggedInUser.userId);
+    const token = authTokenService.createAuthToken(loggedInUser.userId);
 
     return { data: { userId: loggedInUser.userId, token } };
   };
 
   this.updatePassword = async function updatePassword(userId, password) {
-    const hashedPassword = hashPassword(password);
+    const hashedPassword = passwordService.hashPassword(password);
     const updatedUser = await userRepository.updatePassword(userId, hashedPassword);
 
     if (!updatedUser) {

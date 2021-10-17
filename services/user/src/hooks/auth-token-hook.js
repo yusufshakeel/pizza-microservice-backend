@@ -1,7 +1,9 @@
 'use strict';
 
-const { verifyAuthToken } = require('../services/auth-token-service');
+const AuthTokenService = require('../services/auth-token-service');
 const AuthTokenError = require('../errors/auth-token-error');
+
+const authTokenService = new AuthTokenService();
 
 const pathShouldIgnoreAuthToken = [
   {
@@ -31,7 +33,7 @@ function AuthTokenHook(request, reply, done) {
   } else {
     try {
       const token = request.headers.authorization.replace('Bearer ', '');
-      const { userId } = verifyAuthToken(token);
+      const { userId } = authTokenService.verifyAuthToken(token);
       request['x-user-id'] = userId;
     } catch (err) {
       throw new AuthTokenError('Auth failed!', err);
