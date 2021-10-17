@@ -1,15 +1,13 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
 
 const UserSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
     index: true,
-    unique: true,
-    ['default']: uuidv4()
+    unique: true
   },
   firstName: {
     type: String,

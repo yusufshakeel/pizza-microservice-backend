@@ -1,5 +1,6 @@
 'use strict';
 
+const { v4: uuidv4 } = require('uuid');
 const AuthTokenService = require('../services/auth-token-service');
 const PasswordService = require('../services/password-service');
 const UserNotFoundError = require('../errors/user-not-found-error');
@@ -20,9 +21,10 @@ module.exports = function Controller({ userRepository }) {
   this.signUp = async function signUp(user) {
     const createdUser = await userRepository.signUp({
       ...user,
+      userId: uuidv4(),
       password: passwordService.hashPassword(user.password)
     });
-    return { data: createdUser };
+    return { data: { userId: createdUser.userId } };
   };
 
   this.logIn = async function logIn(user) {
