@@ -30,7 +30,8 @@
     "lint:fix": "npx eslint --fix -c .eslintrc.json src",
     "test": "jest -c jest.config.json",
     "seed": "node src/scripts/generate-seed.js",
-    "start": "npm run seed && nodemon src/index.js"
+    "start": "npm run seed && nodemon src/index.js",
+    "docker-build": "docker build -t yusufshakeel/pizza-microservice-backend-product-service ."
   },
   "repository": {
     "type": "git",

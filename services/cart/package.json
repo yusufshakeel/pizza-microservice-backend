@@ -31,7 +31,8 @@
     "lint": "npx eslint -c .eslintrc.json src",
     "lint:fix": "npx eslint --fix -c .eslintrc.json src",
     "test": "jest -c jest.config.json",
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "docker-build": "docker build -t yusufshakeel/pizza-microservice-backend-cart-service ."
   },
   "repository": {
     "type": "git",

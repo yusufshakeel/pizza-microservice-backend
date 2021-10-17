@@ -1,0 +1,42 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: yusufshakeel/pizza-microservice-backend-cart-service
+      context: cart
+      docker:
+        dockerfile: ./services/cart/Dockerfile
+#build:
+#  local:
+#    push: false
+#  artifacts:
+#    - image: yusufshakeel/pizza-microservice-backend-cart-service
+#      context: cart
+#      docker:
+#        dockerfile: ./services/cart/Dockerfile
+#      sync:
+#        manual:
+#          - src: "src/**/*.js"
+#            dest: .
+#    - image: yusufshakeel/pizza-microservice-backend-product-service
+#      context: product
+#      docker:
+#        dockerfile: ./services/cart/Dockerfile
+#      sync:
+#        manual:
+#          - src: "src/**/*.js"
+#            dest: .
+#    - image: yusufshakeel/pizza-microservice-backend-user-service
+#      context: user
+#      docker:
+#        dockerfile: ./services/cart/Dockerfile
+#      sync:
+#        manual:
+#          - src: "src/**/*.js"
+#            dest: .
