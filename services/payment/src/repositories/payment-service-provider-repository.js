@@ -15,9 +15,7 @@ module.exports = function PaymentServiceProviderRepository({
     });
   });
 
-  this.fetchAllPaymentServiceProviderById = errorable(
-    async function fetchAllPaymentServiceProviderById() {
-      return PaymentServiceProviderModel.find({ paymentServiceProviderStatus: 'ACTIVE' });
-    }
-  );
+  this.fetchAllPaymentServiceProvider = errorable(async function fetchAllPaymentServiceProvider() {
+    return PaymentServiceProviderModel.find({ paymentServiceProviderStatus: 'ACTIVE' });
+  });
 };

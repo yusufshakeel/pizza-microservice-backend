@@ -9,7 +9,9 @@ const {
   MONGODB_DB_NAME
 } = require('../constants');
 const { PaymentServiceProviderModel } = require('../models/payment-service-provider-model');
+const { PaymentOptionModel } = require('../models/payment-option-model');
 const PaymentServiceProviderSeed = require('../../seeds/payment-service-provider');
+const PaymentOptionSeed = require('../../seeds/payment-option');
 
 async function generateSeed() {
   const mongoOption = { dbName: MONGODB_DB_NAME };
@@ -22,17 +24,27 @@ async function generateSeed() {
     await mongoose.connect(mongoUrl, mongoOption);
     console.info('Connected to MongoDB database.');
 
-    const bulkOps = PaymentServiceProviderSeed().map(psp => ({
+    const paymentServiceProviders = PaymentServiceProviderSeed().map(psp => ({
       updateOne: {
         filter: { paymentServiceProviderId: psp.paymentServiceProviderId },
         update: psp,
         upsert: true
       }
     }));
-
-    await PaymentServiceProviderModel.bulkWrite(bulkOps)
+    await PaymentServiceProviderModel.bulkWrite(paymentServiceProviders)
       .then(result => console.info('GENERATE SEEDS paymentServiceProviders done.', result))
       .catch(err => console.error('GENERATE SEEDS paymentServiceProviders ERROR:', err));
+
+    const paymentOptions = PaymentOptionSeed().map(po => ({
+      updateOne: {
+        filter: { paymentOptionId: po.paymentOptionId },
+        update: po,
+        upsert: true
+      }
+    }));
+    await PaymentOptionModel.bulkWrite(paymentOptions)
+      .then(result => console.info('GENERATE SEEDS paymentOptions done.', result))
+      .catch(err => console.error('GENERATE SEEDS paymentOptions ERROR:', err));
 
     await mongoose.connection.close();
   } catch (err) {

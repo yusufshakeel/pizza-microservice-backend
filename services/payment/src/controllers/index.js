@@ -3,9 +3,11 @@
 const { v4: uuidV4 } = require('uuid');
 const PaymentIntentNotFoundError = require('../errors/payment-intent-not-found-error');
 const PaymentServiceProviderNotFoundError = require('../errors/payment-service-provider-not-found-error');
+const PaymentOptionNotFoundError = require('../errors/payment-option-not-found-error');
 
 module.exports = function Controller({ repositories }) {
-  const { paymentIntentRepository, paymentServiceProviderRepository } = repositories;
+  const { paymentIntentRepository, paymentServiceProviderRepository, paymentOptionRepository } =
+    repositories;
 
   this.fetchPaymentServiceProviderById = async function fetchPaymentServiceProviderById(
     paymentServiceProviderId
@@ -20,13 +22,31 @@ module.exports = function Controller({ repositories }) {
     return { data: fetchPaymentServiceProvider };
   };
 
-  this.fetchAllPaymentServiceProviderById = async function fetchAllPaymentServiceProviderById() {
+  this.fetchAllPaymentServiceProvider = async function fetchAllPaymentServiceProvider() {
     const fetchedAllPaymentServiceProvider =
-      await paymentServiceProviderRepository.fetchAllPaymentServiceProviderById();
+      await paymentServiceProviderRepository.fetchAllPaymentServiceProvider();
     if (!fetchedAllPaymentServiceProvider) {
       throw new PaymentServiceProviderNotFoundError();
     }
     return { data: { paymentServiceProviders: fetchedAllPaymentServiceProvider } };
+  };
+
+  this.fetchPaymentOptionById = async function fetchPaymentOptionById(paymentOptionId) {
+    const fetchedPaymentOption = await paymentOptionRepository.fetchPaymentOptionById(
+      paymentOptionId
+    );
+    if (!fetchedPaymentOption) {
+      throw new PaymentOptionNotFoundError(paymentOptionId);
+    }
+    return { data: fetchedPaymentOption };
+  };
+
+  this.fetchAllPaymentOption = async function fetchAllPaymentOption() {
+    const fetchedAllPaymentOption = await paymentOptionRepository.fetchAllPaymentOption();
+    if (!fetchedAllPaymentOption) {
+      throw new PaymentOptionNotFoundError();
+    }
+    return { data: { paymentOptions: fetchedAllPaymentOption } };
   };
 
   this.createPaymentIntent = async function createPaymentIntent(userId, paymentIntent) {

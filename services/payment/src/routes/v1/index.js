@@ -10,7 +10,7 @@ module.exports = async function Routes(fastify, options) {
     url: '/payment/v1/payments/payment-service-providers/:paymentServiceProviderId',
     schema: {
       tags: ['APIs - Payment Service Providers'],
-      description: 'Fetch a payment intent.',
+      description: 'Fetch a payment service provider',
       headers: schemaRepository.v1.payment.request.headers,
       params: schemaRepository.v1.payment.fetchPaymentServiceProvider.params,
       response: {
@@ -30,15 +30,50 @@ module.exports = async function Routes(fastify, options) {
     url: '/payment/v1/payments/payment-service-providers',
     schema: {
       tags: ['APIs - Payment Service Providers'],
-      description: 'Fetch a payment intent.',
+      description: 'Fetch all payment service providers.',
       headers: schemaRepository.v1.payment.request.headers,
       response: {
         200: schemaRepository.v1.payment.fetchAllPaymentServiceProvider.response
       }
     },
     handler: async function (request, reply) {
-      const paymentServiceProviders = await controller.fetchAllPaymentServiceProviderById();
+      const paymentServiceProviders = await controller.fetchAllPaymentServiceProvider();
       reply.code(HTTP_STATUS_CODES.OK).send(paymentServiceProviders);
+    }
+  });
+
+  fastify.route({
+    method: 'GET',
+    url: '/payment/v1/payments/payment-options/:paymentOptionId',
+    schema: {
+      tags: ['APIs - Payment Options'],
+      description: 'Fetch a payment option.',
+      headers: schemaRepository.v1.payment.request.headers,
+      params: schemaRepository.v1.payment.fetchPaymentOption.params,
+      response: {
+        200: schemaRepository.v1.payment.fetchPaymentOption.response
+      }
+    },
+    handler: async function (request, reply) {
+      const paymentOption = await controller.fetchPaymentOptionById(request.params.paymentOptionId);
+      reply.code(HTTP_STATUS_CODES.OK).send(paymentOption);
+    }
+  });
+
+  fastify.route({
+    method: 'GET',
+    url: '/payment/v1/payments/payment-options',
+    schema: {
+      tags: ['APIs - Payment Options'],
+      description: 'Fetch all payment options.',
+      headers: schemaRepository.v1.payment.request.headers,
+      response: {
+        200: schemaRepository.v1.payment.fetchAllPaymentOption.response
+      }
+    },
+    handler: async function (request, reply) {
+      const paymentOptions = await controller.fetchAllPaymentOption();
+      reply.code(HTTP_STATUS_CODES.OK).send(paymentOptions);
     }
   });
 

@@ -40,6 +40,18 @@ module.exports = function SchemaRepository(parser) {
       path.join(SCHEMA_LOCATION_V1, 'fetch-all-payment-service-provider-response.json')
     );
 
+    const fetchPaymentOptionParams = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'fetch-payment-option-params.json')
+    );
+
+    const fetchPaymentOptionResponse = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'fetch-payment-option-response.json')
+    );
+
+    const fetchAllPaymentOptionResponse = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'fetch-all-payment-option-response.json')
+    );
+
     const v1Schemas = {
       payment: {
         request: {
@@ -59,6 +71,13 @@ module.exports = function SchemaRepository(parser) {
         },
         fetchAllPaymentServiceProvider: {
           response: fetchAllPaymentServiceProviderResponse
+        },
+        fetchPaymentOption: {
+          params: fetchPaymentOptionParams,
+          response: fetchPaymentOptionResponse
+        },
+        fetchAllPaymentOption: {
+          response: fetchAllPaymentOptionResponse
         }
       }
     };
