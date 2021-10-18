@@ -1,0 +1,13 @@
+{
+  "$id": "fetchPaymentIntentParams",
+  "type": "object",
+  "required": [
+    "paymentIntentId"
+  ],
+  "properties": {
+    "paymentIntentId": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

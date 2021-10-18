@@ -56,14 +56,12 @@ const UserSchema = new mongoose.Schema({
     line2: {
       type: String,
       maxlength: 100,
-      minlength: 1,
-      required: true
+      minlength: 1
     },
     line3: {
       type: String,
       maxlength: 100,
-      minlength: 1,
-      required: true
+      minlength: 1
     },
     city: {
       type: String,

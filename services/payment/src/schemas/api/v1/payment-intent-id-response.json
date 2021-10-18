@@ -1,0 +1,23 @@
+{
+  "$id": "paymentIntentIdResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "paymentIntentId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "paymentIntentId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    }
+  }
+}

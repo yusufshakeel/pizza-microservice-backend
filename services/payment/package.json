@@ -1,0 +1,52 @@
+{
+  "name": "pizza-microservice-backend",
+  "version": "0.1.0",
+  "description": "This is a microservice project. This repository contains backend code.",
+  "main": "index.js",
+  "dependencies": {
+    "arecibo": "^2.0.0",
+    "fastify": "^3.20.1",
+    "fastify-swagger": "^4.8.4",
+    "http-status-codes": "^2.1.4",
+    "json-schema-ref-parser": "^9.0.9",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.11",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
+  },
+  "engines": {
+    "node": ">11.0.0"
+  },
+  "scripts": {
+    "precommit": "npm run lint && npm run test",
+    "lint": "npx eslint -c .eslintrc.json src test",
+    "lint:fix": "npx eslint --fix -c .eslintrc.json src test",
+    "test": "jest -c jest.config.json",
+    "start": "npm run seed && nodemon src/index.js",
+    "seed": "node src/scripts/generate-seed.js",
+    "docker-build": "docker build -t yusufshakeel/pizza-microservice-backend-user-service ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusufshakeel/pizza-microservice-backend.git"
+  },
+  "keywords": [
+    "pizza",
+    "microservice",
+    "backend"
+  ],
+  "author": "Yusuf Shakeel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yusufshakeel/pizza-microservice-backend/issues"
+  },
+  "homepage": "https://github.com/yusufshakeel/pizza-microservice-backend#readme"
+}

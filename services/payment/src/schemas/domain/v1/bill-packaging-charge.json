@@ -1,0 +1,25 @@
+{
+  "$id": "billPackagingCharge",
+  "type": "object",
+  "required": [
+    "group",
+    "adjustment"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "group": {
+      "type": "string",
+      "enum": [
+        "PACKAGING_CHARGE"
+      ],
+      "default": "PACKAGING_CHARGE"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "adjustment": {
+      "$ref": "./adjustment-money.json#"
+    }
+  }
+}

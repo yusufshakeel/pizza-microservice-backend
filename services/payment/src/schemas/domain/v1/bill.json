@@ -1,0 +1,24 @@
+{
+  "$id": "bill",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "anyOf": [
+      {
+        "$ref": "./bill-product.json#"
+      },
+      {
+        "$ref": "./bill-packaging-charge.json#"
+      },
+      {
+        "$ref": "./bill-delivery-charge.json#"
+      },
+      {
+        "$ref": "./bill-discount.json#"
+      },
+      {
+        "$ref": "./bill-taxes.json#"
+      }
+    ]
+  }
+}

@@ -85,3 +85,9 @@ fileignoreconfig:
   checksum: f3bfc3ba4670d4473706e5b0cab1c1db858159580dcdb337b9e4ff7a56672dc5
 - filename: services/user/src/repositories/user-repository.js
   checksum: a65d1425423e82c7ebeee6820598fd679d7c57f61de343a65812c02676835ffd
+- filename: services/payment/package-lock.json
+  checksum: e219e9a703b0c49c403f7426a85fe9a88fab0e34ed3ae19a697535a213d97291
+- filename: services/payment/src/services/auth-token-service.js
+  checksum: e0d5fb29ae081092e100aeeab8adfc71c6e3118340292c808d2c1bac63badd64
+- filename: services/payment/src/constants/index.js
+  checksum: 119d285b7fd70ef8af0804b4ffb517f5c88e505317f21018e0692ed33f558751
