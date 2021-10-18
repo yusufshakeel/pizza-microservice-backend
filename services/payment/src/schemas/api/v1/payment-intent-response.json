@@ -15,7 +15,8 @@
         "buyer",
         "contactPhone",
         "order",
-        "bill"
+        "bill",
+        "statuses"
       ],
       "additionalProperties": false,
       "properties": {
@@ -31,8 +32,8 @@
           "type": "string",
           "format": "uuid"
         },
-        "paymentIntentStatus": {
-          "type": "string"
+        "statuses": {
+          "$ref": "../../domain/v1/statuses.json#"
         },
         "createdAt": {
           "type": "string"
@@ -54,6 +55,12 @@
         },
         "bill": {
           "$ref": "../../domain/v1/bill.json#"
+        },
+        "paymentIntentMethods": {
+          "type": "array",
+          "items": {
+            "$ref": "./payment-intent-method.json#"
+          }
         }
       }
     }

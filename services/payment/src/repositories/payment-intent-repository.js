@@ -17,4 +17,18 @@ module.exports = function PaymentIntentRepository({
     const paymentIntentModel = PaymentIntentModel(paymentIntent);
     return await paymentIntentModel.save();
   });
+
+  this.createPaymentIntentMethod = errorable(async function createPaymentIntentMethod(
+    userId,
+    paymentIntentId,
+    paymentIntentMethod
+  ) {
+    return await PaymentIntentModel.updateOne(
+      {
+        userId,
+        paymentIntentId
+      },
+      { $push: { paymentIntentMethods: paymentIntentMethod } }
+    );
+  });
 };

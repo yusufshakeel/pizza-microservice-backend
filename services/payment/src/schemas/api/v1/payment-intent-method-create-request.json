@@ -1,0 +1,32 @@
+{
+  "$id": "paymentIntentMethodCreateRequest",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "paymentServiceProviderId",
+        "paymentOptionId",
+        "requestedAmount"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "paymentServiceProviderId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "paymentOptionId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "requestedAmount": {
+          "$ref": "../../domain/v1/money.json#"
+        }
+      }
+    }
+  }
+}

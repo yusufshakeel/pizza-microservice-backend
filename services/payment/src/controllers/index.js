@@ -53,6 +53,8 @@ module.exports = function Controller({ repositories }) {
     const paymentIntentId = uuidV4();
     const createdPaymentIntent = await paymentIntentRepository.createPaymentIntent({
       ...paymentIntent,
+      statuses: [{ status: 'CREATED' }],
+      paymentIntentMethods: [],
       userId,
       paymentIntentId
     });
@@ -68,5 +70,39 @@ module.exports = function Controller({ repositories }) {
       throw new PaymentIntentNotFoundError(userId, paymentIntentId);
     }
     return { data: fetchedPaymentIntent };
+  };
+
+  this.createPaymentIntentMethod = async function createPaymentIntentMethod(
+    userId,
+    paymentIntentId,
+    paymentIntentMethod
+  ) {
+    const { paymentServiceProviderId, paymentOptionId } = paymentIntentMethod;
+    await validateCreatePaymentIntentMethod({
+      userId,
+      paymentIntentId,
+      paymentServiceProviderId,
+      paymentOptionId
+    });
+
+    const paymentIntentMethodId = uuidV4();
+    await paymentIntentRepository.createPaymentIntentMethod(userId, paymentIntentId, {
+      ...paymentIntentMethod,
+      paymentIntentMethodId,
+      statuses: [{ status: 'CREATED' }]
+    });
+
+    return { data: { paymentIntentId, paymentIntentMethodId, userId } };
+  };
+
+  const validateCreatePaymentIntentMethod = async ({
+    userId,
+    paymentIntentId,
+    paymentServiceProviderId,
+    paymentOptionId
+  }) => {
+    await this.fetchPaymentServiceProviderById(paymentServiceProviderId);
+    await this.fetchPaymentOptionById(paymentOptionId);
+    await this.fetchPaymentIntentById(userId, paymentIntentId);
   };
 };

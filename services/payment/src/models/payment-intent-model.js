@@ -2,6 +2,82 @@
 
 const mongoose = require('mongoose');
 
+const paymentIntentStatuses = new mongoose.Schema({
+  status: {
+    type: String,
+    required: true,
+    ['enum']: ['CREATED', 'CHARGED', 'REFUNDED', 'CANCELLED'],
+    ['default']: 'CREATED'
+  },
+  eventTime: {
+    type: Date,
+    ['default']: Date.now,
+    required: true
+  }
+});
+
+const paymentIntentMethodStatuses = new mongoose.Schema({
+  status: {
+    type: String,
+    required: true,
+    ['enum']: ['CREATED', 'COMMITTED', 'AUTHORIZED', 'CHARGED', 'REFUNDED'],
+    ['default']: 'CREATED'
+  },
+  eventTime: {
+    type: Date,
+    ['default']: Date.now,
+    required: true
+  }
+});
+
+const paymentIntentMethodSchema = new mongoose.Schema({
+  paymentIntentMethodId: {
+    type: String,
+    required: true
+  },
+  paymentServiceProviderId: {
+    type: String,
+    required: true
+  },
+  paymentOptionId: {
+    type: String,
+    required: true
+  },
+  requestedAmount: {
+    type: Object,
+    required: true,
+    centAmount: {
+      type: 'Number',
+      required: true
+    },
+    fraction: {
+      type: 'Number',
+      required: true
+    },
+    currency: {
+      type: String,
+      required: true
+    }
+  },
+  apiVersion: {
+    type: String,
+    required: true,
+    ['default']: '1.0.0'
+  },
+  statuses: {
+    type: [paymentIntentMethodStatuses],
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    ['default']: Date.now,
+    required: true
+  },
+  updatedAt: {
+    type: Date
+  }
+});
+
 const buyerSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -105,11 +181,9 @@ const PaymentIntentSchema = new mongoose.Schema({
     required: true,
     ['default']: '1.0.0'
   },
-  paymentIntentStatus: {
-    type: String,
-    required: true,
-    ['enum']: ['CREATED', 'CHARGED', 'REFUNDED', 'CANCELLED'],
-    ['default']: 'CREATED'
+  statuses: {
+    type: [paymentIntentStatuses],
+    required: true
   },
   createdAt: {
     type: Date,
@@ -118,6 +192,9 @@ const PaymentIntentSchema = new mongoose.Schema({
   },
   updatedAt: {
     type: Date
+  },
+  paymentIntentMethods: {
+    type: [paymentIntentMethodSchema]
   }
 });
 

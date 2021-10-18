@@ -52,6 +52,18 @@ module.exports = function SchemaRepository(parser) {
       path.join(SCHEMA_LOCATION_V1, 'fetch-all-payment-option-response.json')
     );
 
+    const createPaymentIntentMethodParams = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'payment-intent-method-create-params.json')
+    );
+
+    const createPaymentIntentMethodRequest = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'payment-intent-method-create-request.json')
+    );
+
+    const createPaymentIntentMethodResponse = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'payment-intent-method-create-response.json')
+    );
+
     const v1Schemas = {
       payment: {
         request: {
@@ -60,6 +72,11 @@ module.exports = function SchemaRepository(parser) {
         createPaymentIntent: {
           request: createPaymentIntentRequest,
           response: paymentIntentIdResponse
+        },
+        createPaymentIntentMethod: {
+          params: createPaymentIntentMethodParams,
+          request: createPaymentIntentMethodRequest,
+          response: createPaymentIntentMethodResponse
         },
         fetchPaymentIntent: {
           params: fetchPaymentIntentParams,
