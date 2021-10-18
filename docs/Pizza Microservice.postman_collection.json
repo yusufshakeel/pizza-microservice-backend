@@ -360,6 +360,262 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Payment",
+					"item": [
+						{
+							"name": "Payment Service Providers",
+							"item": [
+								{
+									"name": "All PSPs",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-service-providers",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-service-providers"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PSP by Id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-service-providers/86daccee-b5ea-428b-896a-74e0bb55ea4b",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-service-providers",
+												"86daccee-b5ea-428b-896a-74e0bb55ea4b"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Payment Options",
+							"item": [
+								{
+									"name": "All POs",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-options",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-options"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PO by Id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-options/600be2d4-128f-424e-9850-9f215d614eb8",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-options",
+												"600be2d4-128f-424e-9850-9f215d614eb8"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Payment Intent",
+							"item": [
+								{
+									"name": "Create Payment Intent",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var responseBody = JSON.parse(responseBody);",
+													"pm.environment.set(\"paymentIntentId\", responseBody.data.paymentIntentId);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"data\": {\n        \"cartId\": \"{{cartId}}\",\n        \"buyer\": {\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n        },\n        \"contactPhone\": {\n            \"countryCode\": \"91\",\n            \"phoneNumber\": \"9800098000\"\n        },\n        \"shippingAddress\": {\n            \"line1\": \"Address line 1\",\n            \"line2\": \"Address line 2\",\n            \"line3\": \"Address line 3\",\n            \"city\": \"Bangalore\",\n            \"state\": \"KA\",\n            \"country\": \"IND\",\n            \"postcode\": \"560001\"\n        },\n        \"order\": [\n            {\n                \"productId\": \"p-1\",\n                \"productName\": \"Paneer Pizza\",\n                \"productCustomInfo\": [\n                    {\n                        \"group\": \"SIZE\",\n                        \"items\": [\n                            {\n                                \"id\": \"SMALL - serve 1\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 0,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    },\n                    {\n                        \"group\": \"CRUST\",\n                        \"items\": [\n                            {\n                                \"id\": \"Hand tossed\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 1000,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    },\n                    {\n                        \"group\": \"TOPPING\",\n                        \"items\": [\n                            {\n                                \"id\": \"Onion\",\n                                \"category\": \"VEG\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 1000,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    }\n                ],\n                \"productGroup\": \"VEG\",\n                \"productCategory\": \"PIZZA\",\n                \"unitPrice\": {\n                    \"centAmount\": 20000,\n                    \"currency\": \"INR\",\n                    \"fraction\": 100\n                },\n                \"quantity\": {\n                    \"quantityNumber\": 1,\n                    \"quantityUnit\": \"unit\"\n                }\n            },\n            {\n                \"productId\": \"p-2\",\n                \"productName\": \"Veg Delight Pizza\",\n                \"productCustomInfo\": [\n                    {\n                        \"group\": \"SIZE\",\n                        \"items\": [\n                            {\n                                \"id\": \"SMALL - serve 1\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 0,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    },\n                    {\n                        \"group\": \"CRUST\",\n                        \"items\": [\n                            {\n                                \"id\": \"Hand tossed\",\n                                \"adjustment\": {\n                                    \"multiplier\": 1,\n                                    \"amount\": {\n                                        \"centAmount\": 1000,\n                                        \"fraction\": 100,\n                                        \"currency\": \"INR\"\n                                    }\n                                }\n                            }\n                        ]\n                    }\n                ],\n                \"productGroup\": \"VEG\",\n                \"productCategory\": \"PIZZA\",\n                \"unitPrice\": {\n                    \"centAmount\": 20000,\n                    \"currency\": \"INR\",\n                    \"fraction\": 100\n                },\n                \"quantity\": {\n                    \"quantityNumber\": 1,\n                    \"quantityUnit\": \"unit\"\n                }\n            }\n        ],\n        \"bill\": [\n            {\n                \"group\": \"PRODUCTS\",\n                \"productId\": \"p-1\",\n                \"adjustment\": {\n                    \"multiplier\": 1,\n                    \"amount\": {\n                        \"centAmount\": 22000,\n                        \"currency\": \"INR\",\n                        \"fraction\": 100\n                    }\n                }\n            },\n            {\n                \"group\": \"PRODUCTS\",\n                \"productId\": \"p-2\",\n                \"adjustment\": {\n                    \"multiplier\": 1,\n                    \"amount\": {\n                        \"centAmount\": 21000,\n                        \"currency\": \"INR\",\n                        \"fraction\": 100\n                    }\n                }\n            },\n            {\n                \"group\": \"PACKAGING_CHARGE\",\n                \"description\": \"Some text\",\n                \"adjustment\": {\n                    \"multiplier\": 1,\n                    \"amount\": {\n                        \"centAmount\": 5000,\n                        \"currency\": \"INR\",\n                        \"fraction\": 100\n                    }\n                }\n            },\n            {\n                \"group\": \"DELIVERY_CHARGE\",\n                \"description\": \"Some text\",\n                \"adjustment\": {\n                    \"multiplier\": 1,\n                    \"amount\": {\n                        \"centAmount\": 0,\n                        \"currency\": \"INR\",\n                        \"fraction\": 100\n                    }\n                }\n            },\n            {\n                \"group\": \"DISCOUNT\",\n                \"description\": \"COUPON_CODE_123\",\n                \"adjustment\": {\n                    \"multiplier\": -1,\n                    \"amount\": {\n                        \"centAmount\": 10000,\n                        \"currency\": \"INR\",\n                        \"fraction\": 100\n                    }\n                }\n            },\n            {\n                \"group\": \"TAXES\",\n                \"description\": \"18%\",\n                \"adjustment\": {\n                    \"multiplier\": 1,\n                    \"amount\": {\n                        \"centAmount\": 6840,\n                        \"currency\": \"INR\",\n                        \"fraction\": 100\n                    }\n                }\n            }\n        ]\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-intents",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-intents"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Payment Intent by Id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-intents/{{paymentIntentId}}",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-intents",
+												"{{paymentIntentId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Payment intent Method",
+							"item": [
+								{
+									"name": "Create PIM",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var responseBody = JSON.parse(responseBody);",
+													"pm.environment.set(\"paymentIntentId\", responseBody.data.paymentIntentId);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"data\": {\n        \"paymentServiceProviderId\": \"86daccee-b5ea-428b-896a-74e0bb55ea4b\",\n        \"paymentOptionId\": \"600be2d4-128f-424e-9850-9f215d614eb8\",\n        \"requestedAmount\": {\n            \"centAmount\": 44840,\n            \"currency\": \"INR\",\n            \"fraction\": 100\n        }\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-intents/{{paymentIntentId}}/payment-intent-methods",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-intents",
+												"{{paymentIntentId}}",
+												"payment-intent-methods"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				}
 			]
 		}
