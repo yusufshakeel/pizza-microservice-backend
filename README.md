@@ -58,6 +58,8 @@ $ skaffold dev
 # Services
   * [User](#service-user)
   * [Product](#service-product)
+  * [Cart](#service-cart)
+  * [Payment](#service-payment)
 
 ## Service: User
 
@@ -66,3 +68,20 @@ This has user details.
 ## Service: Product
 
 This has product details.
+
+## Service: Cart
+
+This handles the user cart.
+
+## Service: Payment
+
+This handles the payment.
+
+# Payment Service Provider
+
+## Stripe
+
+[stripe.com](https://stripe.com/)
+
+  - [Accept a payment](https://stripe.com/docs/payments/accept-a-payment)
+  - [The Payment Intents API](https://stripe.com/docs/payments/payment-intents)
