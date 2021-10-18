@@ -83,3 +83,5 @@ fileignoreconfig:
   checksum: e33f8e4522b7334f71c5b34200394540b775f182f2f150cc4dcbccaea6204519
 - filename: README.md
   checksum: f3bfc3ba4670d4473706e5b0cab1c1db858159580dcdb337b9e4ff7a56672dc5
+- filename: services/user/src/repositories/user-repository.js
+  checksum: a65d1425423e82c7ebeee6820598fd679d7c57f61de343a65812c02676835ffd

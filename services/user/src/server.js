@@ -10,12 +10,14 @@ const Controllers = require('./controllers');
 const Repositories = require('./repositories');
 const ErrorHandlerMiddleware = require('./middlewares/error-handler-middleware');
 const AuthTokenHook = require('./hooks/auth-token-hook');
+const RepositoryError = require('./errors/repository-error');
 
 module.exports = function Server({ fastify }) {
   const self = this;
 
   this.setup = async () => {
-    const repositories = new Repositories({ parser: new $RefParser() });
+    const errorable = RepositoryError();
+    const repositories = new Repositories({ parser: new $RefParser(), errorable });
 
     const schemaRepository = await repositories.schemaRepository.loadAll();
     const { userRepository } = repositories;
