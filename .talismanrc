@@ -95,3 +95,5 @@ fileignoreconfig:
   checksum: ecf82fdf1d5a6790710c45a4bf6348e46cbda52a017a7a1690618e5233375e4c
 - filename: services/payment/test/unit/src/services/auth-token-service.unit.test.js
   checksum: bd5bb218574ac32165c2bac2eb7c852909198d2981cfeabf9114b235602e7aea
+- filename: services/payment/test/unit/src/routes/v1/index.unit.test.js
+  checksum: 579228358fc47dcb8e53af338fe73a334792bf03aed203f5419641644dd4a7cd
