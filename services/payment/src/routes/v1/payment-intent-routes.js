@@ -1,6 +1,6 @@
 'use strict';
 
-const HTTP_STATUS_CODES = require("http-status-codes");
+const HTTP_STATUS_CODES = require('http-status-codes');
 
 module.exports = function PaymentIntentRoutes(fastify, options) {
   const { controller, schemaRepository } = options;

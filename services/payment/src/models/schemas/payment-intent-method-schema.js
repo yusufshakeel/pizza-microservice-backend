@@ -8,13 +8,29 @@ const paymentIntentMethodSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  paymentServiceProviderId: {
-    type: String,
-    required: true
+  paymentServiceProvider: {
+    type: Object,
+    required: true,
+    paymentServiceProviderId: {
+      type: String,
+      required: true
+    },
+    paymentServiceProviderName: {
+      type: String,
+      required: true
+    }
   },
-  paymentOptionId: {
-    type: String,
-    required: true
+  paymentOption: {
+    type: Object,
+    required: true,
+    paymentOptionId: {
+      type: String,
+      required: true
+    },
+    paymentOptionName: {
+      type: String,
+      required: true
+    }
   },
   requestedAmount: {
     type: Object,

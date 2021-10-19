@@ -77,8 +77,8 @@ module.exports = function Controller({ repositories }) {
     paymentIntentId,
     paymentIntentMethod
   ) {
-    const { paymentServiceProviderId, paymentOptionId } = paymentIntentMethod;
-    await validateCreatePaymentIntentMethod({
+    const { paymentServiceProviderId, paymentOptionId, requestedAmount } = paymentIntentMethod;
+    const { paymentServiceProvider, paymentOption } = await validateCreatePaymentIntentMethod({
       userId,
       paymentIntentId,
       paymentServiceProviderId,
@@ -87,7 +87,15 @@ module.exports = function Controller({ repositories }) {
 
     const paymentIntentMethodId = uuidV4();
     await paymentIntentRepository.createPaymentIntentMethod(userId, paymentIntentId, {
-      ...paymentIntentMethod,
+      requestedAmount,
+      paymentServiceProvider: {
+        paymentServiceProviderId: paymentServiceProvider.data.paymentServiceProviderId,
+        paymentServiceProviderName: paymentServiceProvider.data.paymentServiceProviderName
+      },
+      paymentOption: {
+        paymentOptionId: paymentOption.data.paymentOptionId,
+        paymentOptionName: paymentOption.data.paymentOptionName
+      },
       paymentIntentMethodId,
       statuses: [{ status: 'CREATED' }]
     });
@@ -101,8 +109,11 @@ module.exports = function Controller({ repositories }) {
     paymentServiceProviderId,
     paymentOptionId
   }) => {
-    await this.fetchPaymentServiceProviderById(paymentServiceProviderId);
-    await this.fetchPaymentOptionById(paymentOptionId);
-    await this.fetchPaymentIntentById(userId, paymentIntentId);
+    const [paymentServiceProvider, paymentOption, paymentIntent] = await Promise.all([
+      this.fetchPaymentServiceProviderById(paymentServiceProviderId),
+      this.fetchPaymentOptionById(paymentOptionId),
+      this.fetchPaymentIntentById(userId, paymentIntentId)
+    ]);
+    return { paymentServiceProvider, paymentOption, paymentIntent };
   };
 };

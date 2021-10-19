@@ -4,8 +4,8 @@
   "required": [
     "paymentIntentMethodId",
     "statuses",
-    "paymentServiceProviderId",
-    "paymentOptionId",
+    "paymentServiceProvider",
+    "paymentOption",
     "requestedAmount"
   ],
   "additionalProperties": false,
@@ -14,13 +14,11 @@
       "type": "string",
       "format": "uuid"
     },
-    "paymentServiceProviderId": {
-      "type": "string",
-      "format": "uuid"
+    "paymentServiceProvider": {
+      "$ref": "../../domain/v1/payment-service-provider.json#"
     },
-    "paymentOptionId": {
-      "type": "string",
-      "format": "uuid"
+    "paymentOption": {
+      "$ref": "../../domain/v1/payment-option.json#"
     },
     "requestedAmount": {
       "$ref": "../../domain/v1/money.json#"
