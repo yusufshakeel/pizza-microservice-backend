@@ -30,3 +30,10 @@ spec:
                 name: cart-clusterip-service
                 port:
                   number: 10103
+          - path: /payment
+            pathType: Prefix
+            backend:
+              service:
+                name: payment-clusterip-service
+                port:
+                  number: 10104
