@@ -30,9 +30,7 @@ describe('PaymentServiceProviderRepository', () => {
       const paymentServiceProviderRepository = new PaymentServiceProviderRepository({
         PaymentServiceProviderModel
       });
-      const result = await paymentServiceProviderRepository.fetchAllPaymentServiceProvider(
-        '87b96c89-5365-4cf0-a104-b28da006c2d7'
-      );
+      const result = await paymentServiceProviderRepository.fetchAllPaymentServiceProvider();
       expect(result).toStrictEqual([
         { paymentServiceProviderId: '87b96c89-5365-4cf0-a104-b28da006c2d7' }
       ]);
