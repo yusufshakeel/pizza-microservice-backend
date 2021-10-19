@@ -7,7 +7,7 @@
   "additionalProperties": false,
   "properties": {
     "data": {
-      "$ref": "../../domain/v1/payment-Option.json#"
+      "$ref": "../../domain/v1/payment-option.json#"
     }
   }
 }
