@@ -32,7 +32,7 @@
     "test": "jest -c jest.config.json",
     "start": "npm run seed && nodemon src/index.js",
     "seed": "node src/scripts/generate-seed.js",
-    "docker-build": "docker build -t yusufshakeel/pizza-microservice-backend-user-service ."
+    "docker-build": "docker build -t yusufshakeel/pizza-microservice-backend-payment-service ."
   },
   "repository": {
     "type": "git",

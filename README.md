@@ -19,6 +19,8 @@ $ kubectl create secret generic product-mongodb-username --from-literal PRODUCT_
 $ kubectl create secret generic product-mongodb-password --from-literal PRODUCT_MONGODB_PASSWORD=
 $ kubectl create secret generic user-mongodb-username --from-literal USER_MONGODB_USERNAME=
 $ kubectl create secret generic user-mongodb-password --from-literal USER_MONGODB_PASSWORD=
+$ kubectl create secret generic payment-mongodb-username --from-literal PAYMENT_MONGODB_USERNAME=
+$ kubectl create secret generic payment-mongodb-password --from-literal PAYMENT_MONGODB_PASSWORD=
 ```
 
 Once the secret is created run the following command it should show the secrets.
