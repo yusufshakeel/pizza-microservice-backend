@@ -28,14 +28,16 @@ Once the secret is created run the following command it should show the secrets.
 ```
 $ kubectl get secret
 NAME                       TYPE                                  DATA   AGE
-cart-mongodb-password      Opaque                                1      10m
-cart-mongodb-username      Opaque                                1      10m
-default-token-68q5b        kubernetes.io/service-account-token   3      157d
-product-mongodb-password   Opaque                                1      9m21s
-product-mongodb-username   Opaque                                1      9m46s
-stripe-psp-secret-key      Opaque                                1      12m
-user-mongodb-password      Opaque                                1      8m47s
-user-mongodb-username      Opaque                                1      9m3s
+cart-mongodb-password      Opaque                                1      43h
+cart-mongodb-username      Opaque                                1      43h
+default-token-68q5b        kubernetes.io/service-account-token   3      159d
+payment-mongodb-password   Opaque                                1      2s
+payment-mongodb-username   Opaque                                1      11s
+product-mongodb-password   Opaque                                1      43h
+product-mongodb-username   Opaque                                1      43h
+stripe-psp-secret-key      Opaque                                1      43h
+user-mongodb-password      Opaque                                1      43h
+user-mongodb-username      Opaque                                1      43h
 ```
 
 # Start database for local development
