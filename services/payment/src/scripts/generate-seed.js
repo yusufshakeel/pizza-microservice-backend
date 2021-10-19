@@ -13,6 +13,20 @@ const { PaymentOptionModel } = require('../models/payment-option-model');
 const PaymentServiceProviderSeed = require('../../seeds/payment-service-provider');
 const PaymentOptionSeed = require('../../seeds/payment-option');
 
+async function upsert(data, model, filterField, seedFilename) {
+  const bulkOps = data.map(record => ({
+    updateOne: {
+      filter: { [filterField]: record[filterField] },
+      update: record,
+      upsert: true
+    }
+  }));
+  await model
+    .bulkWrite(bulkOps)
+    .then(result => console.info(`GENERATE SEEDS ${seedFilename} done.`, result))
+    .catch(err => console.error(`GENERATE SEEDS ${seedFilename} ERROR:`, err));
+}
+
 async function generateSeed() {
   const mongoOption = { dbName: MONGODB_DB_NAME };
   const mongoAuth =
@@ -24,27 +38,15 @@ async function generateSeed() {
     await mongoose.connect(mongoUrl, mongoOption);
     console.info('Connected to MongoDB database.');
 
-    const paymentServiceProviders = PaymentServiceProviderSeed().map(psp => ({
-      updateOne: {
-        filter: { paymentServiceProviderId: psp.paymentServiceProviderId },
-        update: psp,
-        upsert: true
-      }
-    }));
-    await PaymentServiceProviderModel.bulkWrite(paymentServiceProviders)
-      .then(result => console.info('GENERATE SEEDS paymentServiceProviders done.', result))
-      .catch(err => console.error('GENERATE SEEDS paymentServiceProviders ERROR:', err));
-
-    const paymentOptions = PaymentOptionSeed().map(po => ({
-      updateOne: {
-        filter: { paymentOptionId: po.paymentOptionId },
-        update: po,
-        upsert: true
-      }
-    }));
-    await PaymentOptionModel.bulkWrite(paymentOptions)
-      .then(result => console.info('GENERATE SEEDS paymentOptions done.', result))
-      .catch(err => console.error('GENERATE SEEDS paymentOptions ERROR:', err));
+    await Promise.all([
+      upsert(
+        PaymentServiceProviderSeed(),
+        PaymentServiceProviderModel,
+        'paymentServiceProviderId',
+        'PaymentServiceProviders'
+      ),
+      upsert(PaymentOptionSeed(), PaymentOptionModel, 'paymentOptionId', 'PaymentOptions')
+    ]);
 
     await mongoose.connection.close();
   } catch (err) {
