@@ -10,7 +10,7 @@ class DatabaseAccessError extends DomainError {
       message,
       innerError
     });
-    this.name = 'USER_DOMAIN_DATABASE_ACCESS_ERROR';
+    this.name = 'PAYMENT_DOMAIN_DATABASE_ACCESS_ERROR';
   }
 }
 

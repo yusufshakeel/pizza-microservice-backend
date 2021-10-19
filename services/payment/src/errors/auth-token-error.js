@@ -10,7 +10,7 @@ class AuthTokenError extends DomainError {
       message,
       innerError: error
     });
-    this.name = 'CART_DOMAIN_AUTH_TOKEN_ERROR';
+    this.name = 'PAYMENT_DOMAIN_AUTH_TOKEN_ERROR';
   }
 }
 
