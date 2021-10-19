@@ -12,11 +12,7 @@
         "cartId",
         "userId",
         "paymentIntentId",
-        "buyer",
-        "contactPhone",
-        "order",
-        "bill",
-        "statuses"
+        "paymentIntentMethods"
       ],
       "additionalProperties": false,
       "properties": {
