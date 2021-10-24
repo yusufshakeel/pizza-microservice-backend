@@ -61,6 +61,9 @@ const userRepository = {
   }),
   isEmailAvailableForSignUp: jest.fn(() => {
     return { userId: '87b96c89-5365-4cf0-a104-b28da006c2d7' };
+  }),
+  isContactPhoneAvailableForSignUp: jest.fn(() => {
+    return { userId: '87b96c89-5365-4cf0-a104-b28da006c2d7' };
   })
 };
 
@@ -82,6 +85,32 @@ describe('Routes /v1/users', () => {
         payload: {
           data: {
             emailAddress: 'johndoe@example.com'
+          }
+        }
+      });
+      expect(response.statusCode).toBe(200);
+      expect(JSON.parse(response.payload)).toStrictEqual({
+        data: {
+          isAvailable: expect.any(Boolean)
+        }
+      });
+    });
+  });
+
+  describe('Contact phone available for sign up', () => {
+    test('Should be able to confirm availability of contactPhone', async () => {
+      const response = await fastify.inject({
+        method: 'POST',
+        url: '/user/v1/users/signup/contact-phone-available',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        payload: {
+          data: {
+            contactPhone: {
+              countryCode: '91',
+              phoneNumber: '9800098000'
+            }
           }
         }
       });

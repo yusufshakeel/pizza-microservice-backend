@@ -12,6 +12,16 @@ module.exports = function Controller({ userRepository }) {
 
   const isAvailable = bool => ({ data: { isAvailable: bool } });
 
+  this.isContactPhoneAvailableForSignUp = async function isContactPhoneAvailableForSignUp(
+    contactPhone
+  ) {
+    const fetchedResult = await userRepository.isContactPhoneAvailableForSignUp(contactPhone);
+    if (!fetchedResult) {
+      return isAvailable(true);
+    }
+    return isAvailable(false);
+  };
+
   this.isEmailAvailableForSignUp = async function isEmailAvailableForSignUp(emailAddress) {
     const fetchedResult = await userRepository.isEmailAvailableForSignUp(emailAddress);
     if (!fetchedResult) {

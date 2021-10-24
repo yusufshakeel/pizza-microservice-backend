@@ -68,6 +68,14 @@ module.exports = function SchemaRepository(parser) {
       path.join(SCHEMA_LOCATION_V1, 'user-signup-email-available-response.json')
     );
 
+    const signUpContactPhoneAvailableRequest = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'user-signup-contact-phone-available-request.json')
+    );
+
+    const signUpContactPhoneAvailableResponse = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'user-signup-contact-phone-available-response.json')
+    );
+
     const v1Schemas = {
       users: {
         request: {
@@ -83,6 +91,10 @@ module.exports = function SchemaRepository(parser) {
           emailAvailable: {
             request: signUpEmailAvailableRequest,
             response: signUpEmailAvailableResponse
+          },
+          contactPhoneAvailable: {
+            request: signUpContactPhoneAvailableRequest,
+            response: signUpContactPhoneAvailableResponse
           }
         },
         logIn: {

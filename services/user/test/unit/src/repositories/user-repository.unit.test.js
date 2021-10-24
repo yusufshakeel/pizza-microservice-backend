@@ -16,6 +16,22 @@ describe('UserRepository', () => {
     });
   });
 
+  describe('isContactPhoneAvailableForSignUp', () => {
+    test('Should return user', async () => {
+      const UserModel = {
+        findOne: jest.fn(() => ({ userId: '87b96c89-5365-4cf0-a104-b28da006c2d7' }))
+      };
+      const userRepository = new UserRepository({ UserModel });
+      const result = await userRepository.isContactPhoneAvailableForSignUp({
+        countryCode: '91',
+        contactPhone: '9800098000'
+      });
+      expect(result).toStrictEqual({
+        userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
+      });
+    });
+  });
+
   describe('fetchUserById', () => {
     test('Should return user', async () => {
       const UserModel = {

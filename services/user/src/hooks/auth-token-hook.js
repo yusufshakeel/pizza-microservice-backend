@@ -40,6 +40,11 @@ const pathShouldIgnoreAuthToken = [
     urlPath: '/user/v1/users/signup/email-available',
     method: 'POST',
     description: 'Check if email is already registered'
+  },
+  {
+    urlPath: '/user/v1/users/signup/contact-phone-available',
+    method: 'POST',
+    description: 'Check if email is already registered'
   }
 ];
 

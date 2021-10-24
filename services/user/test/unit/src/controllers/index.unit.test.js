@@ -41,6 +41,48 @@ describe('Testing controller', () => {
     });
   });
 
+  describe('isContactPhoneAvailableForSignUp', () => {
+    describe('When contactPhone is available', () => {
+      test('Should return true', async () => {
+        const userRepository = {
+          isContactPhoneAvailableForSignUp: jest.fn()
+        };
+        const controller = new Controller({ userRepository });
+        const result = await controller.isContactPhoneAvailableForSignUp({
+          countryCode: '91',
+          contactPhone: '9800098000'
+        });
+        expect(result).toStrictEqual({
+          data: {
+            isAvailable: true
+          }
+        });
+      });
+    });
+
+    describe('When contactPhone is not available', () => {
+      test('Should return false', async () => {
+        const userRepository = {
+          isContactPhoneAvailableForSignUp: jest.fn(() => {
+            return {
+              userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
+            };
+          })
+        };
+        const controller = new Controller({ userRepository });
+        const result = await controller.isContactPhoneAvailableForSignUp({
+          countryCode: '91',
+          contactPhone: '9800098000'
+        });
+        expect(result).toStrictEqual({
+          data: {
+            isAvailable: false
+          }
+        });
+      });
+    });
+  });
+
   describe('fetchUserById', () => {
     describe('When user is present', () => {
       test('Should return user data', async () => {

@@ -3,6 +3,12 @@
 const RepositoryError = require('../errors/repository-error');
 
 module.exports = function UserRepository({ UserModel, errorable = RepositoryError() }) {
+  this.isContactPhoneAvailableForSignUp = errorable(async function isContactPhoneAvailableForSignUp(
+    contactPhone
+  ) {
+    return UserModel.findOne({ contactPhone }, { userId: 1 });
+  });
+
   this.isEmailAvailableForSignUp = errorable(async function isEmailAvailableForSignUp(
     emailAddress
   ) {

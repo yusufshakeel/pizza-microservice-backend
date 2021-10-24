@@ -42,6 +42,25 @@ module.exports = async function Routes(fastify, options) {
 
   fastify.route({
     method: 'POST',
+    url: '/user/v1/users/signup/contact-phone-available',
+    schema: {
+      tags: ['APIs'],
+      description: 'Check if contact phone is available for sign up.',
+      body: schemaRepository.v1.users.signUp.contactPhoneAvailable.request,
+      response: {
+        200: schemaRepository.v1.users.signUp.contactPhoneAvailable.response
+      }
+    },
+    handler: async function (request, reply) {
+      const result = await controller.isContactPhoneAvailableForSignUp(
+        request.body.data.contactPhone
+      );
+      reply.code(HTTP_STATUS_CODES.OK).send(result);
+    }
+  });
+
+  fastify.route({
+    method: 'POST',
     url: '/user/v1/users',
     schema: {
       tags: ['APIs'],

@@ -36,6 +36,7 @@ const UserSchema = new mongoose.Schema({
   contactPhone: {
     type: Object,
     required: true,
+    unique: true,
     countryCode: {
       type: String,
       required: true
