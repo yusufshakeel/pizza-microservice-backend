@@ -7,6 +7,40 @@ const UserNotFoundError = require('../../../../src/errors/user-not-found-error')
 const passwordService = new PasswordService();
 
 describe('Testing controller', () => {
+  describe('isEmailAvailableForSignUp', () => {
+    describe('When email is available', () => {
+      test('Should return true', async () => {
+        const userRepository = {
+          isEmailAvailableForSignUp: jest.fn()
+        };
+        const controller = new Controller({ userRepository });
+        const result = await controller.isEmailAvailableForSignUp('johndoe@example.com');
+        expect(result).toStrictEqual({
+          data: {
+            isAvailable: true
+          }
+        });
+      });
+    });
+
+    describe('When email is not available', () => {
+      test('Should return false', async () => {
+        const userRepository = {
+          isEmailAvailableForSignUp: jest.fn(() => {
+            return { userId: '87b96c89-5365-4cf0-a104-b28da006c2d7' };
+          })
+        };
+        const controller = new Controller({ userRepository });
+        const result = await controller.isEmailAvailableForSignUp('johndoe@example.com');
+        expect(result).toStrictEqual({
+          data: {
+            isAvailable: false
+          }
+        });
+      });
+    });
+  });
+
   describe('fetchUserById', () => {
     describe('When user is present', () => {
       test('Should return user data', async () => {

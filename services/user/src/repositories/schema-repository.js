@@ -60,6 +60,14 @@ module.exports = function SchemaRepository(parser) {
       path.join(SCHEMA_LOCATION_V1, 'user-request-headers.json')
     );
 
+    const signUpEmailAvailableRequest = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'user-signup-email-available-request.json')
+    );
+
+    const signUpEmailAvailableResponse = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'user-signup-email-available-response.json')
+    );
+
     const v1Schemas = {
       users: {
         request: {
@@ -71,7 +79,11 @@ module.exports = function SchemaRepository(parser) {
         },
         signUp: {
           request: userSignUpRequest,
-          response: userSignUpResponse
+          response: userSignUpResponse,
+          emailAvailable: {
+            request: signUpEmailAvailableRequest,
+            response: signUpEmailAvailableResponse
+          }
         },
         logIn: {
           request: userLogInRequest,

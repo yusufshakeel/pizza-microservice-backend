@@ -10,6 +10,16 @@ module.exports = function Controller({ userRepository }) {
   const authTokenService = new AuthTokenService();
   const passwordService = new PasswordService();
 
+  const isAvailable = bool => ({ data: { isAvailable: bool } });
+
+  this.isEmailAvailableForSignUp = async function isEmailAvailableForSignUp(emailAddress) {
+    const fetchedResult = await userRepository.isEmailAvailableForSignUp(emailAddress);
+    if (!fetchedResult) {
+      return isAvailable(true);
+    }
+    return isAvailable(false);
+  };
+
   this.fetchUserById = async function fetchUserById(userId) {
     const fetchedUser = await userRepository.fetchUserById(userId);
     if (!fetchedUser) {

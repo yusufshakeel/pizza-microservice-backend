@@ -12,6 +12,36 @@
 					"name": "User",
 					"item": [
 						{
+							"name": "Email available",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"emailAddress\": \"johndoe@example.com\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{USER_DOMAIN_URL}}/user/v1/users/signup/email-available",
+									"host": [
+										"{{USER_DOMAIN_URL}}"
+									],
+									"path": [
+										"user",
+										"v1",
+										"users",
+										"signup",
+										"email-available"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "User sign up",
 							"event": [
 								{
@@ -561,7 +591,7 @@
 							]
 						},
 						{
-							"name": "Payment intent Method",
+							"name": "Payment Intent Method",
 							"item": [
 								{
 									"name": "Create PIM",

@@ -1,0 +1,22 @@
+{
+  "$id": "userSignUpEmailAvailableRequest",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "emailAddress"
+      ],
+      "properties": {
+        "emailAddress": {
+          "$ref": "../../domain/v1/email-address.json#"
+        }
+      }
+    }
+  }
+}

@@ -58,6 +58,9 @@ const userRepository = {
     return {
       userId: '87b96c89-5365-4cf0-a104-b28da006c2d7'
     };
+  }),
+  isEmailAvailableForSignUp: jest.fn(() => {
+    return { userId: '87b96c89-5365-4cf0-a104-b28da006c2d7' };
   })
 };
 
@@ -68,6 +71,29 @@ beforeAll(async () => {
 });
 
 describe('Routes /v1/users', () => {
+  describe('Email available for sign up', () => {
+    test('Should be able to confirm availability of email', async () => {
+      const response = await fastify.inject({
+        method: 'POST',
+        url: '/user/v1/users/signup/email-available',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        payload: {
+          data: {
+            emailAddress: 'johndoe@example.com'
+          }
+        }
+      });
+      expect(response.statusCode).toBe(200);
+      expect(JSON.parse(response.payload)).toStrictEqual({
+        data: {
+          isAvailable: expect.any(Boolean)
+        }
+      });
+    });
+  });
+
   describe('Sign up route', () => {
     test('Should create user', async () => {
       const response = await fastify.inject({

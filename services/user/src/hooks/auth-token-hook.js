@@ -22,6 +22,11 @@ const pathShouldIgnoreAuthToken = [
     description: 'Arecibo Readiness'
   },
   {
+    urlPath: '/',
+    method: 'OPTIONS',
+    description: 'Options HTTP Verb'
+  },
+  {
     urlPath: '/user/v1/users/login',
     method: 'POST',
     description: 'User log in'
@@ -32,9 +37,9 @@ const pathShouldIgnoreAuthToken = [
     description: 'User sign up'
   },
   {
-    urlPath: '/',
-    method: 'OPTIONS',
-    description: 'Options HTTP Verb'
+    urlPath: '/user/v1/users/signup/email-available',
+    method: 'POST',
+    description: 'Check if email is already registered'
   }
 ];
 
