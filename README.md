@@ -7,7 +7,8 @@ This is a microservice project. This repository contains backend code.
 * Node +10.0.0
 * Docker
 * Kubernetes enabled (Docker for Mac/Win)
-* Skaffold
+* [Ingress-Nginx](https://kubernetes.github.io/ingress-nginx/deploy/)
+* [Skaffold](https://skaffold.dev/)
 
 # Creating secret
 
@@ -38,6 +39,39 @@ product-mongodb-username   Opaque                                1      43h
 stripe-psp-secret-key      Opaque                                1      43h
 user-mongodb-password      Opaque                                1      43h
 user-mongodb-username      Opaque                                1      43h
+```
+# Setup ingress-nginx
+
+Docker Desktop
+
+```
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml --validate=false
+```
+
+List the namespace
+
+```
+$ kubectl get namespace
+NAME              STATUS   AGE
+default           Active   162d
+ingress-nginx     Active   44s
+kube-node-lease   Active   162d
+kube-public       Active   162d
+kube-system       Active   162d
+```
+
+Delete the ingress
+
+```
+$ kubectl delete namespace ingress-nginx
+```
+
+# Creating docker image
+
+Go to each services directory and run the following command
+
+```
+$ npm run docker-build
 ```
 
 # Start database for local development

@@ -99,3 +99,11 @@ fileignoreconfig:
   checksum: 579228358fc47dcb8e53af338fe73a334792bf03aed203f5419641644dd4a7cd
 - filename: infra/k8s/payment.yaml
   checksum: 349fd0ce9abdc64bc1093182ee003f8493c410946e0960826eedbe3919890dda
+- filename: services/product/package-lock.json
+  checksum: a801e5fa7690c035f3ef5406dc5d2c867f022da3ce0a3ef28cbb78b2c69f0a94
+- filename: services/cart/package-lock.json
+  checksum: 98324c99999666b562253358603a3cb7bd91fadb207d3dd2cdec6c8e51b3d16c
+- filename: services/payment/package-lock.json
+  checksum: cf50b966d6761ca1427464afa4e975ee498a0392bb36c4c04cd88457a9429c58
+- filename: services/user/package-lock.json
+  checksum: adfce7f2a980fa0d210c537928f4ab87aeb1106456ddf3d657a628d95bb6bc7b

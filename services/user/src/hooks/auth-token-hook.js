@@ -30,6 +30,11 @@ const pathShouldIgnoreAuthToken = [
     urlPath: '/user/v1/users',
     method: 'POST',
     description: 'User sign up'
+  },
+  {
+    urlPath: '/',
+    method: 'OPTIONS',
+    description: 'Options HTTP Verb'
   }
 ];
 

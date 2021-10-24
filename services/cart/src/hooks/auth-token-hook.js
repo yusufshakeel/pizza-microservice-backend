@@ -20,6 +20,11 @@ const pathShouldIgnoreAuthToken = [
     urlPath: '/readiness',
     method: 'GET',
     description: 'Arecibo Readiness'
+  },
+  {
+    urlPath: '/',
+    method: 'OPTIONS',
+    description: 'Options HTTP Verb'
   }
 ];
 
