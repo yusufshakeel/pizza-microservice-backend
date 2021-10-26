@@ -2,10 +2,13 @@
 
 const { v4: uuidV4 } = require('uuid');
 const PaymentIntentNotFoundError = require('../errors/payment-intent-not-found-error');
+const PaymentIntentMethodNotFoundError = require('../errors/payment-intent-method-not-found-error');
 const PaymentServiceProviderNotFoundError = require('../errors/payment-service-provider-not-found-error');
 const PaymentOptionNotFoundError = require('../errors/payment-option-not-found-error');
 
-module.exports = function Controller({ repositories }) {
+const stripeCommitAction = require('../payment-service-providers/STRIPE/CREDIT_CARD/commit');
+
+module.exports = function Controller({ repositories, actionHandler }) {
   const { paymentIntentRepository, paymentServiceProviderRepository, paymentOptionRepository } =
     repositories;
 
@@ -115,5 +118,24 @@ module.exports = function Controller({ repositories }) {
       this.fetchPaymentIntentById(userId, paymentIntentId)
     ]);
     return { paymentServiceProvider, paymentOption, paymentIntent };
+  };
+
+  this.commitPaymentIntent = async function commitPaymentIntent(userId, paymentIntentId) {
+    const { data: paymentIntent } = await this.fetchPaymentIntentById(userId, paymentIntentId);
+    if (!paymentIntent) {
+      throw new PaymentIntentNotFoundError(userId, paymentIntentId);
+    }
+    if (!paymentIntent.paymentIntentMethods.length) {
+      throw new PaymentIntentMethodNotFoundError({ userId, paymentIntentId });
+    }
+    const { pspResponse } = await stripeCommitAction({
+      data: { paymentIntent, paymentIntentMethod: paymentIntent.paymentIntentMethods[0] }
+    });
+    return {
+      data: {
+        paymentIntentId,
+        pspResponse
+      }
+    };
   };
 };

@@ -57,13 +57,13 @@ module.exports = async function Routes(fastify, options) {
       headers: schemaRepository.v1.carts.request.headers,
       body: schemaRepository.v1.carts.create.request,
       response: {
-        200: schemaRepository.v1.carts.create.response
+        201: schemaRepository.v1.carts.create.response
       }
     },
     handler: async function (request, reply) {
       const userId = request['x-user-id'];
       const cart = await controller.upsertCart(userId, request.body.data);
-      reply.code(HTTP_STATUS_CODES.OK).send(cart);
+      reply.code(HTTP_STATUS_CODES.CREATED).send(cart);
     }
   });
 

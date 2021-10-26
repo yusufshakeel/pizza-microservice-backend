@@ -107,3 +107,9 @@ fileignoreconfig:
   checksum: cf50b966d6761ca1427464afa4e975ee498a0392bb36c4c04cd88457a9429c58
 - filename: services/user/package-lock.json
   checksum: adfce7f2a980fa0d210c537928f4ab87aeb1106456ddf3d657a628d95bb6bc7b
+- filename: services/payment/package-lock.json
+  checksum: bc2ef1670bff584c9044725d57a67f201067a693c281f423ce261f35d5577241
+- filename: services/payment/src/payment-service-providers/STRIPE/CREDIT_CARD/commit.js
+  checksum: c34631c1608cc0ce6f2d25aa758883b70d16a9c76b2fd4e3fa347dcf56715b14
+- filename: services/payment/src/constants/index.js
+  checksum: 8251bd7b1e8eb0af0831657e54081d389ec70654baa8ec6c97365c969d6ddc36

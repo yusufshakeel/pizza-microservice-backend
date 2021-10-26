@@ -8,6 +8,10 @@ module.exports = function SchemaRepository(parser) {
   this.schemas = {};
 
   this.loadAll = async function () {
+    const emptyObject = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'empty-object.json')
+    );
+
     const paymentRequestHeader = await parser.dereference(
       path.join(SCHEMA_LOCATION_V1, 'payment-request-headers.json')
     );
@@ -64,8 +68,13 @@ module.exports = function SchemaRepository(parser) {
       path.join(SCHEMA_LOCATION_V1, 'payment-intent-method-create-response.json')
     );
 
+    const paymentIntentCommitResponse = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'payment-intent-commit-response.json')
+    );
+
     const v1Schemas = {
       payment: {
+        emptyObject: emptyObject,
         request: {
           headers: paymentRequestHeader
         },
@@ -95,6 +104,9 @@ module.exports = function SchemaRepository(parser) {
         },
         fetchAllPaymentOption: {
           response: fetchAllPaymentOptionResponse
+        },
+        commit: {
+          response: paymentIntentCommitResponse
         }
       }
     };

@@ -67,7 +67,7 @@ module.exports = async function Routes(fastify, options) {
       description: 'Sign up user.',
       body: schemaRepository.v1.users.signUp.request,
       response: {
-        200: schemaRepository.v1.users.signUp.response
+        201: schemaRepository.v1.users.signUp.response
       }
     },
     handler: async function (request, reply) {

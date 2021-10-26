@@ -11,5 +11,6 @@ module.exports = {
   MONGODB_PASSWORD: process.env.PAYMENT_MONGODB_PASSWORD ?? 'password',
   MONGODB_DB_NAME: process.env.PAYMENT_MONGODB_DB_NAME || 'pizza_payment',
   JWT_SECRET: process.env.PAYMENT_JWT_SECRET || 'secret',
+  STRIPE_PSP_SECRET_KEY: process.env.STRIPE_PSP_SECRET_KEY || 'stripe-secret-key',
   DOMAIN_DIRECTORY: __dirname + '/../../'
 };
