@@ -121,3 +121,5 @@ fileignoreconfig:
   checksum: 5a10e0a88cc669bcf8287be2dd5f48ca31b1e4debdc16e8f6e01c233ebaad00c
 - filename: services/payment/src/payment-service-providers/STRIPE/CREDIT_CARD/commit.js
   checksum: 9eeecfee1a25fa8533a127a8aece463e6447a49e7a8d4a131bdd3b295f3f924d
+- filename: infra/k8s/payment.yaml
+  checksum: 4c36b176ed4d5cc3d83659c7de187ce636f5fb0c3dd914fe30334f4ad5569183

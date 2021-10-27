@@ -31,6 +31,11 @@ spec:
                 secretKeyRef:
                   name: payment-mongodb-password
                   key: PAYMENT_MONGODB_PASSWORD
+            - name: STRIPE_PSP_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-psp-secret-key
+                  key: STRIPE_PSP_SECRET_KEY
 ---
 apiVersion: v1
 kind: Service
