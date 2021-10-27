@@ -10,7 +10,13 @@ async function Commit({ data, stripe = stripeSetup }) {
     description: 'Some description'
   };
   const response = await stripe.paymentIntents.create(request);
-  return { pspResponse: { clientSecret: response.client_secret } };
+  console.info('commit\n\n\n', JSON.stringify(response), '\n\n\n');
+  const toSave = {
+    providerId: response.id,
+    paymentMethod: response.payment_method,
+    status: response.status
+  };
+  return { pspResponse: { clientSecret: response.client_secret }, toSave };
 }
 
 module.exports = Commit;

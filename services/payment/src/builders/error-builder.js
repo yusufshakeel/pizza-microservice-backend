@@ -11,7 +11,8 @@ const errorHandler = error => {
           code: error.name,
           error: error.name,
           message: error.message,
-          errorData: error?.errorData
+          errorData: error?.errorData,
+          pspError: error?.pspError
         }
       ]
     }

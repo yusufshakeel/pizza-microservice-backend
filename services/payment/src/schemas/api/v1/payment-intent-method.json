@@ -23,6 +23,12 @@
     "requestedAmount": {
       "$ref": "../../domain/v1/money.json#"
     },
+    "capturedAmount": {
+      "$ref": "../../domain/v1/money.json#"
+    },
+    "capturedAmountAt": {
+      "type": "string"
+    },
     "statuses": {
       "$ref": "../../domain/v1/statuses.json#"
     },

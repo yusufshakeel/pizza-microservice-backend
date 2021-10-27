@@ -48,6 +48,24 @@ const paymentIntentMethodSchema = new mongoose.Schema({
       required: true
     }
   },
+  capturedAmount: {
+    type: Object,
+    centAmount: {
+      type: 'Number',
+      required: true
+    },
+    fraction: {
+      type: 'Number',
+      required: true
+    },
+    currency: {
+      type: String,
+      required: true
+    }
+  },
+  capturedAmountAt: {
+    type: Date
+  },
   apiVersion: {
     type: String,
     required: true,
@@ -56,6 +74,9 @@ const paymentIntentMethodSchema = new mongoose.Schema({
   statuses: {
     type: [paymentIntentMethodStatusesSchema],
     required: true
+  },
+  pspData: {
+    type: Object
   },
   createdAt: {
     type: Date,

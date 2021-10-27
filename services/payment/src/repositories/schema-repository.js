@@ -72,6 +72,10 @@ module.exports = function SchemaRepository(parser) {
       path.join(SCHEMA_LOCATION_V1, 'payment-intent-commit-response.json')
     );
 
+    const paymentIntentChargeResponse = await parser.dereference(
+      path.join(SCHEMA_LOCATION_V1, 'payment-intent-charge-response.json')
+    );
+
     const v1Schemas = {
       payment: {
         emptyObject: emptyObject,
@@ -107,6 +111,9 @@ module.exports = function SchemaRepository(parser) {
         },
         commit: {
           response: paymentIntentCommitResponse
+        },
+        charge: {
+          response: paymentIntentChargeResponse
         }
       }
     };

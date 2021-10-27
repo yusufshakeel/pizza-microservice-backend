@@ -67,4 +67,26 @@ module.exports = function PaymentIntentRoutes(fastify, options) {
       reply.code(HTTP_STATUS_CODES.OK).send(paymentIntent);
     }
   });
+
+  fastify.route({
+    method: 'POST',
+    url: '/payment/v1/payments/payment-intents/:paymentIntentId/charge',
+    schema: {
+      tags: ['APIs - Payment Intents'],
+      description: 'Commit a payment intent.',
+      headers: schemaRepository.v1.payment.request.headers,
+      body: schemaRepository.v1.payment.emptyObject,
+      response: {
+        200: schemaRepository.v1.payment.charge.response
+      }
+    },
+    handler: async function (request, reply) {
+      const userId = request['x-user-id'];
+      const paymentIntent = await controller.chargePaymentIntent(
+        userId,
+        request.params.paymentIntentId
+      );
+      reply.code(HTTP_STATUS_CODES.OK).send(paymentIntent);
+    }
+  });
 };

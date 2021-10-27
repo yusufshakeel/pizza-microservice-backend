@@ -7,6 +7,7 @@ const PaymentServiceProviderNotFoundError = require('../errors/payment-service-p
 const PaymentOptionNotFoundError = require('../errors/payment-option-not-found-error');
 
 const stripeCommitAction = require('../payment-service-providers/STRIPE/CREDIT_CARD/commit');
+const stripeChargeAction = require('../payment-service-providers/STRIPE/CREDIT_CARD/charge');
 
 module.exports = function Controller({ repositories, actionHandler }) {
   const { paymentIntentRepository, paymentServiceProviderRepository, paymentOptionRepository } =
@@ -128,8 +129,35 @@ module.exports = function Controller({ repositories, actionHandler }) {
     if (!paymentIntent.paymentIntentMethods.length) {
       throw new PaymentIntentMethodNotFoundError({ userId, paymentIntentId });
     }
-    const { pspResponse } = await stripeCommitAction({
+    const { pspResponse, toSave } = await stripeCommitAction({
       data: { paymentIntent, paymentIntentMethod: paymentIntent.paymentIntentMethods[0] }
+    });
+    await paymentIntentRepository.commitPaymentIntent(userId, paymentIntentId, {
+      paymentIntent,
+      toSave
+    });
+    return {
+      data: {
+        paymentIntentId,
+        pspResponse
+      }
+    };
+  };
+
+  this.chargePaymentIntent = async function chargePaymentIntent(userId, paymentIntentId) {
+    const { data: paymentIntent } = await this.fetchPaymentIntentById(userId, paymentIntentId);
+    if (!paymentIntent) {
+      throw new PaymentIntentNotFoundError(userId, paymentIntentId);
+    }
+    if (!paymentIntent.paymentIntentMethods.length) {
+      throw new PaymentIntentMethodNotFoundError({ userId, paymentIntentId });
+    }
+    const { pspResponse, toSave } = await stripeChargeAction({
+      data: { paymentIntent, paymentIntentMethod: paymentIntent.paymentIntentMethods[0] }
+    });
+    await paymentIntentRepository.chargePaymentIntent(userId, paymentIntentId, {
+      paymentIntent,
+      toSave
     });
     return {
       data: {
