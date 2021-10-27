@@ -117,3 +117,7 @@ fileignoreconfig:
   checksum: da3c3673842a0507c24cee83ebebbf22c293d43b2b171da3d01239fee5fa0890
 - filename: services/payment/src/payment-service-providers/STRIPE/CREDIT_CARD/charge.js
   checksum: dc982467b9830f81708c0834e4cd8d6214fb37d21c84754a83cff4afa1dda258
+- filename: services/payment/src/controllers/index.js
+  checksum: 5a10e0a88cc669bcf8287be2dd5f48ca31b1e4debdc16e8f6e01c233ebaad00c
+- filename: services/payment/src/payment-service-providers/STRIPE/CREDIT_CARD/commit.js
+  checksum: 9eeecfee1a25fa8533a127a8aece463e6447a49e7a8d4a131bdd3b295f3f924d

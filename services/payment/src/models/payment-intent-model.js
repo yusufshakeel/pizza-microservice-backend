@@ -61,6 +61,10 @@ const PaymentIntentSchema = new mongoose.Schema({
   updatedAt: {
     type: Date
   },
+  status: {
+    type: String,
+    ['default']: 'CREATED'
+  },
   paymentIntentMethods: {
     type: [paymentIntentMethodSchema]
   }

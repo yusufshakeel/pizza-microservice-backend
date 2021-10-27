@@ -31,8 +31,10 @@ module.exports = function PaymentIntentRepository({
         $push: { statuses: status, 'paymentIntentMethods.0.statuses': status },
         $set: {
           updatedAt: Date.now(),
+          status: 'COMMITTED',
           'paymentIntentMethods.0.updatedAt': Date.now(),
-          'paymentIntentMethods.0.pspData': toSave
+          'paymentIntentMethods.0.pspData': toSave,
+          'paymentIntentMethods.0.status': 'COMMITTED'
         }
       }
     );
@@ -51,10 +53,12 @@ module.exports = function PaymentIntentRepository({
         $push: { statuses: status, 'paymentIntentMethods.0.statuses': status },
         $set: {
           updatedAt: Date.now(),
+          status: 'CHARGED',
           'paymentIntentMethods.0.updatedAt': Date.now(),
           'paymentIntentMethods.0.capturedAmount': toSave.capturedAmount,
           'paymentIntentMethods.0.capturedAmountAt': toSave.capturedAmountAt,
-          'paymentIntentMethods.0.pspData': toSave
+          'paymentIntentMethods.0.pspData': toSave,
+          'paymentIntentMethods.0.status': 'CHARGED'
         }
       }
     );

@@ -129,6 +129,17 @@ module.exports = function Controller({ repositories, actionHandler }) {
     if (!paymentIntent.paymentIntentMethods.length) {
       throw new PaymentIntentMethodNotFoundError({ userId, paymentIntentId });
     }
+
+    if (paymentIntent.paymentIntentMethods[0].status === 'COMMITTED' && paymentIntent.paymentIntentMethods[0].pspData.clientSecret) {
+      console.info(`Payment Intent ${paymentIntentId} is already committed.`);
+      return {
+        data: {
+          paymentIntentId,
+          pspResponse: { clientSecret: paymentIntent.paymentIntentMethods[0].pspData.clientSecret }
+        }
+      };
+    }
+
     const { pspResponse, toSave } = await stripeCommitAction({
       data: { paymentIntent, paymentIntentMethod: paymentIntent.paymentIntentMethods[0] }
     });
@@ -136,6 +147,7 @@ module.exports = function Controller({ repositories, actionHandler }) {
       paymentIntent,
       toSave
     });
+
     return {
       data: {
         paymentIntentId,
@@ -152,17 +164,27 @@ module.exports = function Controller({ repositories, actionHandler }) {
     if (!paymentIntent.paymentIntentMethods.length) {
       throw new PaymentIntentMethodNotFoundError({ userId, paymentIntentId });
     }
-    const { pspResponse, toSave } = await stripeChargeAction({
+
+    if (paymentIntent.paymentIntentMethods[0].status === 'CHARGED') {
+      console.info(`Payment Intent ${paymentIntentId} is already charged.`);
+      return {
+        data: {
+          paymentIntentId
+        }
+      };
+    }
+
+    const { toSave } = await stripeChargeAction({
       data: { paymentIntent, paymentIntentMethod: paymentIntent.paymentIntentMethods[0] }
     });
     await paymentIntentRepository.chargePaymentIntent(userId, paymentIntentId, {
       paymentIntent,
       toSave
     });
+
     return {
       data: {
-        paymentIntentId,
-        pspResponse
+        paymentIntentId
       }
     };
   };

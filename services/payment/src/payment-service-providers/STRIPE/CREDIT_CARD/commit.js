@@ -7,14 +7,18 @@ async function Commit({ data, stripe = stripeSetup }) {
     amount: data.paymentIntentMethod.requestedAmount.centAmount,
     currency: data.paymentIntentMethod.requestedAmount.currency,
     payment_method_types: ['card'],
-    description: 'Some description'
+    description: 'PizzaPizza - Payments - Testing...',
+    metadata: {
+      domain: 'PizzaPizza - Payments - Testing...',
+      paymentIntentId: data.paymentIntent.paymentIntentId
+    }
   };
   const response = await stripe.paymentIntents.create(request);
-  console.info('commit\n\n\n', JSON.stringify(response), '\n\n\n');
   const toSave = {
     providerId: response.id,
     paymentMethod: response.payment_method,
-    status: response.status
+    status: response.status,
+    clientSecret: response.client_secret
   };
   return { pspResponse: { clientSecret: response.client_secret }, toSave };
 }
