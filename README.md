@@ -103,17 +103,25 @@ $ skaffold dev
 
 This has user details.
 
+This is running on port: 10101
+
 ## Service: Product
 
 This has product details.
+
+This is running on port: 10102
 
 ## Service: Cart
 
 This handles the user cart.
 
+This is running on port: 10103
+
 ## Service: Payment
 
 This handles the payment.
+
+This is running on port: 10104
 
 # Payment Service Provider
 
@@ -123,3 +131,6 @@ This handles the payment.
 
   - [Accept a payment](https://stripe.com/docs/payments/accept-a-payment)
   - [The Payment Intents API](https://stripe.com/docs/payments/payment-intents)
+
+For frontend integration check 
+[pizza-microservice-frontend](https://github.com/yusufshakeel/pizza-microservice-frontend) project.
