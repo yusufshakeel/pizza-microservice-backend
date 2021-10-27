@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+  template:
+    metadata:
+      labels:
+        app: payment
+    spec:
+      containers:
+        - name: payment
+          image: yusufshakeel/pizza-microservice-backend-payment-service
+          imagePullPolicy: Never
+          env:
+            - name: PAYMENT_MONGODB_HOST
+              value: "payment-mongodb-service"
+            - name: PAYMENT_MONGODB_PORT
+              value: "27017"
+            - name: PAYMENT_MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: payment-mongodb-username
+                  key: PAYMENT_MONGODB_USERNAME
+            - name: PAYMENT_MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: payment-mongodb-password
+                  key: PAYMENT_MONGODB_PASSWORD
+            - name: STRIPE_PSP_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-psp-secret-key
+                  key: STRIPE_PSP_SECRET_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-clusterip-service
+spec:
+  selector:
+    app: payment
+  ports:
+    - name: payment
+      protocol: TCP
+      port: 10104
+      targetPort: 10104

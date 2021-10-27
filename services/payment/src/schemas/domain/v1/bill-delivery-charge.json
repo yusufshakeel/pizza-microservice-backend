@@ -1,0 +1,25 @@
+{
+  "$id": "billDeliveryCharge",
+  "type": "object",
+  "required": [
+    "group",
+    "adjustment"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "group": {
+      "type": "string",
+      "enum": [
+        "DELIVERY_CHARGE"
+      ],
+      "default": "DELIVERY_CHARGE"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "adjustment": {
+      "$ref": "./adjustment-money.json#"
+    }
+  }
+}

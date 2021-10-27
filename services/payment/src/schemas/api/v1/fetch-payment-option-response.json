@@ -1,0 +1,13 @@
+{
+  "$id": "fetchPaymentOptionResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "$ref": "../../domain/v1/payment-option.json#"
+    }
+  }
+}

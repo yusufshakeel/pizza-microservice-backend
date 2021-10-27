@@ -1,0 +1,17 @@
+{
+  "$id": "quantity",
+  "type": "object",
+  "required": [
+    "quantityNumber"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "quantityNumber": {
+      "type": "integer",
+      "exclusiveMinimum": 0
+    },
+    "quantityUnit": {
+      "type": "string"
+    }
+  }
+}

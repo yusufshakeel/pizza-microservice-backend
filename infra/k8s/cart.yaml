@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels:
+        app: cart
+    spec:
+      containers:
+        - name: cart
+          image: yusufshakeel/pizza-microservice-backend-cart-service
+          imagePullPolicy: Never
+          env:
+            - name: CART_MONGODB_HOST
+              value: "cart-mongodb-service"
+            - name: CART_MONGODB_PORT
+              value: "27017"
+            - name: CART_MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: cart-mongodb-username
+                  key: CART_MONGODB_USERNAME
+            - name: CART_MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cart-mongodb-password
+                  key: CART_MONGODB_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cart-clusterip-service
+spec:
+  selector:
+    app: cart
+  ports:
+    - name: cart
+      protocol: TCP
+      port: 10103
+      targetPort: 10103

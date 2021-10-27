@@ -1,0 +1,42 @@
+{
+  "$id": "paymentIntentMethod",
+  "type": "object",
+  "required": [
+    "paymentIntentMethodId",
+    "statuses",
+    "paymentServiceProvider",
+    "paymentOption",
+    "requestedAmount"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "paymentIntentMethodId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "paymentServiceProvider": {
+      "$ref": "../../domain/v1/payment-service-provider.json#"
+    },
+    "paymentOption": {
+      "$ref": "../../domain/v1/payment-option.json#"
+    },
+    "requestedAmount": {
+      "$ref": "../../domain/v1/money.json#"
+    },
+    "capturedAmount": {
+      "$ref": "../../domain/v1/money.json#"
+    },
+    "capturedAmountAt": {
+      "type": "string"
+    },
+    "statuses": {
+      "$ref": "../../domain/v1/statuses.json#"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    }
+  }
+}

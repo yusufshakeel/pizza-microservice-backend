@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+        - name: user
+          image: yusufshakeel/pizza-microservice-backend-user-service
+          imagePullPolicy: Never
+          env:
+            - name: USER_MONGODB_HOST
+              value: "user-mongodb-service"
+            - name: USER_MONGODB_PORT
+              value: "27017"
+            - name: USER_MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-mongodb-username
+                  key: USER_MONGODB_USERNAME
+            - name: USER_MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-mongodb-password
+                  key: USER_MONGODB_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-clusterip-service
+spec:
+  selector:
+    app: user
+  ports:
+    - name: user
+      protocol: TCP
+      port: 10101
+      targetPort: 10101

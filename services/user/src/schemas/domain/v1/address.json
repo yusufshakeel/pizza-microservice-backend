@@ -1,0 +1,35 @@
+{
+  "$id": "address",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "line1",
+    "city",
+    "state",
+    "country",
+    "postcode"
+  ],
+  "properties": {
+    "line1": {
+      "type": "string"
+    },
+    "line2": {
+      "type": "string"
+    },
+    "line3": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "postcode": {
+      "type": "string"
+    }
+  }
+}

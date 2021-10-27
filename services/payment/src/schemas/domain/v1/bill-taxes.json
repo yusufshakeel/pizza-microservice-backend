@@ -1,0 +1,25 @@
+{
+  "$id": "billTaxes",
+  "type": "object",
+  "required": [
+    "group",
+    "adjustment"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "group": {
+      "type": "string",
+      "enum": [
+        "TAXES"
+      ],
+      "default": "TAXES"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "adjustment": {
+      "$ref": "./adjustment-money.json#"
+    }
+  }
+}

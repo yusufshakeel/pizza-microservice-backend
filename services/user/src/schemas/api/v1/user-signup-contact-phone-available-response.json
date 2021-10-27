@@ -1,0 +1,20 @@
+{
+  "$id": "userSignUpContactPhoneAvailableResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "isAvailable"
+      ],
+      "properties": {
+        "isAvailable": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

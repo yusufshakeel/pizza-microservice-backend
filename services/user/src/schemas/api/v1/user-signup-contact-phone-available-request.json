@@ -1,0 +1,22 @@
+{
+  "$id": "userSignUpContactPhoneAvailableRequest",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contactPhone"
+      ],
+      "properties": {
+        "contactPhone": {
+          "$ref": "../../domain/v1/contact-phone.json#"
+        }
+      }
+    }
+  }
+}

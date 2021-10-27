@@ -1,0 +1,15 @@
+{
+  "$id": "statuses",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "eventTime": {
+        "type": "string"
+      }
+    }
+  }
+}

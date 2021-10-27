@@ -1,0 +1,64 @@
+{
+  "$id": "paymentIntentResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "cartId",
+        "userId",
+        "paymentIntentId",
+        "paymentIntentMethods"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "cartId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "userId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "paymentIntentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "statuses": {
+          "$ref": "../../domain/v1/statuses.json#"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "buyer": {
+          "$ref": "../../domain/v1/buyer.json#"
+        },
+        "contactPhone": {
+          "$ref": "../../domain/v1/contact-phone.json#"
+        },
+        "shippingAddress": {
+          "$ref": "../../domain/v1/address.json#"
+        },
+        "order": {
+          "$ref": "../../domain/v1/order.json#"
+        },
+        "bill": {
+          "$ref": "../../domain/v1/bill.json#"
+        },
+        "paymentIntentMethods": {
+          "type": "array",
+          "items": {
+            "$ref": "./payment-intent-method.json#"
+          }
+        }
+      }
+    }
+  }
+}

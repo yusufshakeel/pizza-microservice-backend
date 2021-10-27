@@ -1,0 +1,40 @@
+{
+  "$id": "cartItems",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "productId",
+      "productName",
+      "productGroup",
+      "productCategory",
+      "unitPrice",
+      "quantity",
+      "productCustomInfo"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "productId": {
+        "type": "string"
+      },
+      "productName": {
+        "type": "string"
+      },
+      "productGroup": {
+        "type": "string"
+      },
+      "productCategory": {
+        "type": "string"
+      },
+      "unitPrice": {
+        "$ref": "../../domain/v1/money.json#"
+      },
+      "quantity": {
+        "$ref": "../../domain/v1/quantity.json#"
+      },
+      "productCustomInfo": {
+        "$ref": "./cart-product-custom-info.json#"
+      }
+    }
+  }
+}

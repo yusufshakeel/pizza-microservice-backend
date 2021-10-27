@@ -1,0 +1,24 @@
+{
+  "$id": "fetchAllPaymentServiceProviderResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "paymentServiceProviders"
+      ],
+      "properties": {
+        "paymentServiceProviders": {
+          "type": "array",
+          "items": {
+            "$ref": "../../domain/v1/payment-service-provider.json#"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$id": "paymentOption",
+  "type": "object",
+  "required": [
+    "paymentOptionId",
+    "paymentOptionName"
+  ],
+  "properties": {
+    "paymentOptionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "paymentOptionName": {
+      "type": "string"
+    }
+  }
+}

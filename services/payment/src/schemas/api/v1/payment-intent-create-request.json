@@ -1,0 +1,42 @@
+{
+  "$id": "paymentIntentCreateRequest",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "cartId",
+        "buyer",
+        "contactPhone",
+        "order",
+        "bill"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "cartId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "buyer": {
+          "$ref": "../../domain/v1/buyer.json#"
+        },
+        "contactPhone": {
+          "$ref": "../../domain/v1/contact-phone.json#"
+        },
+        "shippingAddress": {
+          "$ref": "../../domain/v1/address.json#"
+        },
+        "order": {
+          "$ref": "../../domain/v1/order.json#"
+        },
+        "bill": {
+          "$ref": "../../domain/v1/bill.json#"
+        }
+      }
+    }
+  }
+}

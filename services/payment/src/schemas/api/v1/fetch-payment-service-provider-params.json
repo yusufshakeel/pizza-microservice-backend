@@ -1,0 +1,13 @@
+{
+  "$id": "fetchPaymentServiceProviderParams",
+  "type": "object",
+  "required": [
+    "paymentServiceProviderId"
+  ],
+  "properties": {
+    "paymentServiceProviderId": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

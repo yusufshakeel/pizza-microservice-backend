@@ -1,0 +1,21 @@
+{
+  "$id": "userSignUpResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "userId"
+      ],
+      "properties": {
+        "userId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    }
+  }
+}

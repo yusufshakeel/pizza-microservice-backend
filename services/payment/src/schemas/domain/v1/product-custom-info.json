@@ -1,0 +1,39 @@
+{
+  "$id": "productCustomInfo",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "group",
+      "items"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "group": {
+        "type": "string"
+      },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "adjustment"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "adjustment": {
+              "$ref": "./adjustment-money.json#"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product
+  template:
+    metadata:
+      labels:
+        app: product
+    spec:
+      containers:
+        - name: product
+          image: yusufshakeel/pizza-microservice-backend-product-service
+          imagePullPolicy: Never
+          env:
+            - name: PRODUCT_MONGODB_HOST
+              value: "product-mongodb-service"
+            - name: PRODUCT_MONGODB_PORT
+              value: "27017"
+            - name: PRODUCT_MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: product-mongodb-username
+                  key: PRODUCT_MONGODB_USERNAME
+            - name: PRODUCT_MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: product-mongodb-password
+                  key: PRODUCT_MONGODB_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-clusterip-service
+spec:
+  selector:
+    app: product
+  ports:
+    - name: product
+      protocol: TCP
+      port: 10102
+      targetPort: 10102

@@ -1,0 +1,20 @@
+{
+  "$id": "buyer",
+  "type": "object",
+  "required": [
+    "firstName"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1
+    }
+  }
+}

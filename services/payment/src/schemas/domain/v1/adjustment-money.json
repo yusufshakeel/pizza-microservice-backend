@@ -1,0 +1,21 @@
+{
+  "$id": "adjustmentMoney",
+  "type": "object",
+  "required": [
+    "multiplier",
+    "amount"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "multiplier": {
+      "type": "integer",
+      "enum": [
+        1,
+        -1
+      ]
+    },
+    "amount": {
+      "$ref": "./money.json#"
+    }
+  }
+}

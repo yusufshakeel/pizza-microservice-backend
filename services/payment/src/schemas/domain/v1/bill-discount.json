@@ -1,0 +1,25 @@
+{
+  "$id": "billDiscount",
+  "type": "object",
+  "required": [
+    "group",
+    "adjustment"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "group": {
+      "type": "string",
+      "enum": [
+        "DISCOUNT"
+      ],
+      "default": "DISCOUNT"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "adjustment": {
+      "$ref": "./adjustment-money.json#"
+    }
+  }
+}

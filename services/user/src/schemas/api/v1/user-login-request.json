@@ -1,0 +1,26 @@
+{
+  "$id": "userLogInRequest",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "emailAddress",
+        "password"
+      ],
+      "properties": {
+        "emailAddress": {
+          "$ref": "../../domain/v1/email-address.json#"
+        },
+        "password": {
+          "$ref": "../../domain/v1/password.json#"
+        }
+      }
+    }
+  }
+}

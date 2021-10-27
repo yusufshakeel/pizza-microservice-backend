@@ -1,0 +1,25 @@
+{
+  "$id": "billProduct",
+  "type": "object",
+  "required": [
+    "group",
+    "productId",
+    "adjustment"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "group": {
+      "type": "string",
+      "enum": [
+        "PRODUCTS"
+      ],
+      "default": "PRODUCTS"
+    },
+    "productId": {
+      "type": "string"
+    },
+    "adjustment": {
+      "$ref": "./adjustment-money.json#"
+    }
+  }
+}

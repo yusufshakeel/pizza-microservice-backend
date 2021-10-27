@@ -1,0 +1,29 @@
+{
+  "$id": "paymentIntentCommitResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "paymentIntentId"
+      ],
+      "properties": {
+        "paymentIntentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "pspResponse": {
+          "type": "object",
+          "properties": {
+            "clientSecret": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

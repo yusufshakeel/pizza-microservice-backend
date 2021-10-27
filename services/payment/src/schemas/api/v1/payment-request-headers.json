@@ -1,0 +1,12 @@
+{
+  "$id": "paymentRequestHeaders",
+  "type": "object",
+  "required": [
+    "Authorization"
+  ],
+  "properties": {
+    "Authorization": {
+      "type": "string"
+    }
+  }
+}

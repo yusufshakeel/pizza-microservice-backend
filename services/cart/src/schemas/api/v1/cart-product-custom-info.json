@@ -1,0 +1,56 @@
+{
+  "$id": "cartProductCustomInfo",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "group",
+      "items"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "group": {
+        "type": "string"
+      },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "adjustment"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "adjustment": {
+              "type": "object",
+              "required": [
+                "multiplier",
+                "amount"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "multiplier": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    -1
+                  ]
+                },
+                "amount": {
+                  "$ref": "../../domain/v1/money.json#"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

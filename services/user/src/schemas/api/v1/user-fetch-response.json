@@ -1,0 +1,51 @@
+{
+  "$id": "userFetchResponse",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": [
+        "userId",
+        "firstName",
+        "contactPhone"
+      ],
+      "properties": {
+        "userId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "$ref": "../../domain/v1/email-address.json#"
+        },
+        "contactPhone": {
+          "$ref": "../../domain/v1/contact-phone.json#"
+        },
+        "address": {
+          "$ref": "../../domain/v1/address.json#"
+        },
+        "accountStatus": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
