@@ -173,7 +173,7 @@
 							"response": []
 						},
 						{
-							"name": "User by Id",
+							"name": "User Account",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -628,14 +628,9 @@
 										}
 									},
 									"response": []
-								}
-							]
-						},
-						{
-							"name": "Payment Intent Method",
-							"item": [
+								},
 								{
-									"name": "Create PIM",
+									"name": "Create Payment Intent Method",
 									"event": [
 										{
 											"listen": "test",
@@ -660,7 +655,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"paymentServiceProviderId\": \"86daccee-b5ea-428b-896a-74e0bb55ea4b\",\n        \"paymentOptionId\": \"600be2d4-128f-424e-9850-9f215d614eb8\",\n        \"requestedAmount\": {\n            \"centAmount\": 44840,\n            \"currency\": \"INR\",\n            \"fraction\": 100\n        }\n    }\n}",
+											"raw": "{\n    \"data\": {\n        \"paymentServiceProviderId\": \"86daccee-b5ea-428b-896a-74e0bb55ea4b\",\n        \"paymentOptionId\": \"600be2d4-128f-424e-9850-9f215d614eb8\",\n        \"requestedAmount\": {\n            \"centAmount\": 50,\n            \"currency\": \"INR\",\n            \"fraction\": 100\n        }\n    }\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -679,6 +674,102 @@
 												"payment-intents",
 												"{{paymentIntentId}}",
 												"payment-intent-methods"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Commit Payment Intent",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-intents/{{paymentIntentId}}/commit",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-intents",
+												"{{paymentIntentId}}",
+												"commit"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Charge Payment Intent",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{authToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PAYMENT_DOMAIN_URL}}/payment/v1/payments/payment-intents/{{paymentIntentId}}/charge",
+											"host": [
+												"{{PAYMENT_DOMAIN_URL}}"
+											],
+											"path": [
+												"payment",
+												"v1",
+												"payments",
+												"payment-intents",
+												"{{paymentIntentId}}",
+												"charge"
 											]
 										}
 									},
